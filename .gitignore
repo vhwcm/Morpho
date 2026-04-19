@@ -1,0 +1,12 @@
+# Binaries
+gophersre
+
+# Go
+bin/
+*.test
+*.out
+
+# Secrets
+.env
+.env.*
+!.env.example
