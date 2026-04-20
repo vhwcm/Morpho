@@ -5,6 +5,7 @@ import "os"
 type Env struct {
 	GeminiAPIKey string
 	GeminiModel  string
+	AgentEditing AgentEditConfig
 }
 
 func Load() Env {
@@ -23,8 +24,17 @@ func Load() Env {
 		apiKey = fileCfg.GeminiAPIKey
 	}
 
+	mode, err := NormalizeEditMode(fileCfg.AgentEditing.Mode)
+	if err != nil {
+		mode = EditModeOff
+	}
+
 	return Env{
 		GeminiAPIKey: apiKey,
 		GeminiModel:  model,
+		AgentEditing: AgentEditConfig{
+			Mode:         mode,
+			AllowedPaths: normalizeAllowedPaths(fileCfg.AgentEditing.AllowedPaths),
+		},
 	}
 }

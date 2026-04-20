@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	"github.com/vhwcm/Gopher/cmd"
-	"github.com/vhwcm/Gopher/internal/ui"
+	"github.com/vhwcm/Morpho/cmd"
+	"github.com/vhwcm/Morpho/internal/ui"
 )
 
 func main() {

@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-const MessagePrefix = "🐹: "
+const MessagePrefix = "🦋: "
 
 type AIClient interface {
 	Generate(ctx context.Context, prompt string) (string, error)
@@ -46,7 +46,7 @@ type DiagnosticReport struct {
 
 func (r DiagnosticReport) String() string {
 	var b strings.Builder
-	b.WriteString(prefixedLine("=== GopherSRE Diagnostic Report ==="))
+	b.WriteString(prefixedLine("=== MorphoSRE Diagnostic Report ==="))
 	b.WriteString(prefixedLine(fmt.Sprintf("Problema: %s", r.Problem)))
 	b.WriteString("\n")
 	b.WriteString(prefixedLine("[Plan Agent]"))

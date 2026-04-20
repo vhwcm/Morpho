@@ -20,7 +20,7 @@ type OutputRecord struct {
 var invalidFileChars = regexp.MustCompile(`[^a-zA-Z0-9_-]+`)
 
 func outputsDir() string {
-	return filepath.Join(".gopher", "outputs")
+	return filepath.Join(".morpho", "outputs")
 }
 
 func agentOutputDir(agentName string) string {

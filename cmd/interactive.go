@@ -304,7 +304,7 @@ func (m interactiveModel) View() string {
 	case stateForm:
 		return m.renderFormView()
 	case stateRunning:
-		return boxStyle.Render("🐹 Executando comando...\n\nAguarde a conclusão.")
+		return boxStyle.Render("🦋 Executando comando...\n\nAguarde a conclusão.")
 	case stateOutput:
 		return m.renderOutputView()
 	default:
@@ -314,7 +314,7 @@ func (m interactiveModel) View() string {
 
 func (m interactiveModel) renderMenuView() string {
 	var b strings.Builder
-	b.WriteString(titleStyle.Render("🐹 Gopher • Modo Iterativo"))
+	b.WriteString(titleStyle.Render("🦋 Morpho • Modo Iterativo"))
 	b.WriteString("\n")
 	b.WriteString(hintStyle.Render("Use ↑/↓ para navegar, Enter para executar, q para sair."))
 	b.WriteString("\n\n")
@@ -337,14 +337,14 @@ func (m interactiveModel) renderMenuView() string {
 func (m interactiveModel) renderFormView() string {
 	item := m.items[m.activeItem]
 	field := item.Fields[m.fieldIndex]
-	title := titleStyle.Render("🐹 Preencha os campos")
+	title := titleStyle.Render("🦋 Preencha os campos")
 	hint := hintStyle.Render("Enter/Tab para próximo campo, Esc para cancelar")
 	body := fmt.Sprintf("Ação: %s\nCampo atual: %s\n\n%s", item.Title, field.Label, m.input.View())
 	return boxStyle.Render(title + "\n" + hint + "\n\n" + body)
 }
 
 func (m interactiveModel) renderOutputView() string {
-	title := titleStyle.Render("🐹 Resultado do comando")
+	title := titleStyle.Render("🦋 Resultado do comando")
 	args := strings.Join(m.lastArgs, " ")
 	status := "✅ sucesso"
 	if m.lastError != nil {

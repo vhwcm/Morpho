@@ -10,7 +10,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/vhwcm/Gopher/internal/ui"
+	"github.com/vhwcm/Morpho/internal/ui"
 )
 
 var installOutputPath string
@@ -18,8 +18,8 @@ var installLinkLocalBin bool
 
 var installCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Compila o Gopher e gera binário local",
-	Long:  "Compila o projeto atual e gera o binário na pasta bin, por padrão em bin/gopher.",
+	Short: "Compila o Morpho e gera binário local",
+	Long:  "Compila o projeto atual e gera o binário na pasta bin, por padrão em bin/morpho.",
 	RunE: func(cmd *cobra.Command, _ []string) error {
 		target := filepath.Clean(installOutputPath)
 		if target == "" || target == "." {
@@ -31,7 +31,7 @@ var installCmd = &cobra.Command{
 			return err
 		}
 
-		ui.Header("Instalação do Gopher")
+		ui.Header("Instalação do Morpho")
 		ui.Info(fmt.Sprintf("Compilando binário em: %s", target))
 
 		buildCmd := exec.CommandContext(cmd.Context(), "go", "build", "-o", target, ".")
@@ -46,9 +46,9 @@ var installCmd = &cobra.Command{
 
 		absTarget, _ := filepath.Abs(target)
 		ui.Success("Instalação concluída.")
-		ui.Info("Nome do binário: gopher")
+		ui.Info("Nome do binário: morpho")
 		ui.Info(fmt.Sprintf("Binário gerado em: %s", absTarget))
-		ui.Info("Use agora: ./bin/gopher help")
+		ui.Info("Use agora: ./bin/morpho help")
 
 		if installLinkLocalBin {
 			localBinPath, inPath, err := installToLocalBin(absTarget)
@@ -57,7 +57,7 @@ var installCmd = &cobra.Command{
 			} else {
 				ui.Success(fmt.Sprintf("Binário publicado em: %s", localBinPath))
 				if inPath {
-					ui.Info("Você pode executar diretamente: gopher help")
+					ui.Info("Você pode executar diretamente: morpho help")
 				} else {
 					ui.Warn("~/.local/bin não está no PATH atual.")
 					ui.Info("Adicione ao shell e reabra o terminal:")
@@ -72,8 +72,8 @@ var installCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(installCmd)
-	installCmd.Flags().StringVar(&installOutputPath, "output", filepath.Join("bin", "gopher"), "caminho do binário de saída")
-	installCmd.Flags().BoolVar(&installLinkLocalBin, "link-local-bin", true, "também publica em ~/.local/bin/gopher")
+	installCmd.Flags().StringVar(&installOutputPath, "output", filepath.Join("bin", "morpho"), "caminho do binário de saída")
+	installCmd.Flags().BoolVar(&installLinkLocalBin, "link-local-bin", true, "também publica em ~/.local/bin/morpho")
 }
 
 func installToLocalBin(source string) (string, bool, error) {
@@ -87,7 +87,7 @@ func installToLocalBin(source string) (string, bool, error) {
 		return "", false, err
 	}
 
-	target := filepath.Join(localBinDir, "gopher")
+	target := filepath.Join(localBinDir, "morpho")
 	if err := copyFile(source, target); err != nil {
 		return "", false, err
 	}

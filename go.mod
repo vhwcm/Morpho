@@ -1,4 +1,4 @@
-module github.com/vhwcm/Gopher
+module github.com/vhwcm/Morpho
 
 go 1.18
 
@@ -35,5 +35,6 @@ require (
 	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/yusufpapurcu/wmi v1.2.4 // indirect
 	golang.org/x/sys v0.27.0 // indirect
+	golang.org/x/term v0.7.0 // indirect
 	golang.org/x/text v0.3.8 // indirect
 )

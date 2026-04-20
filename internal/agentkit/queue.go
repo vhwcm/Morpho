@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vhwcm/Gopher/internal/gemini"
+	"github.com/vhwcm/Morpho/internal/gemini"
 )
 
 type QueueRequest struct {

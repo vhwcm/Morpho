@@ -8,7 +8,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
-const MessagePrefix = "🐹: "
+const MessagePrefix = "🦋: "
 
 var (
 	prefixStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("212")).Bold(true)
@@ -38,7 +38,7 @@ func Println(message string) {
 }
 
 func Header(title string) {
-	fmt.Println(headerStyle.Render("🐹 Gopher • " + strings.TrimSpace(title)))
+	fmt.Println(headerStyle.Render("🦋 Morpho • " + strings.TrimSpace(title)))
 }
 
 func Info(message string) {

@@ -1,13 +1,13 @@
-# 🐹 Gopher: Sistema Agêntico para Desenvolvimento
+# 🦋 Morpho: Sistema Agêntico para Desenvolvimento
 
-O **Gopher** é uma CLI em Go para criar, editar e executar agentes de IA voltados a desenvolvimento de software.
+O **Morpho** é uma CLI em Go para criar, editar e executar agentes de IA voltados a desenvolvimento de software.
 
 ## 🚀 Diferenciais
 
 - **Baixo custo**: usa a API do Gemini para viabilizar um fluxo acessível.
 - **Configuração simples**: cada agente pode ser criado e editado via CLI.
 - **Agentes prontos**: presets para começar rápido (backend, frontend, review, QA, DevOps).
-- **Mensagens padronizadas**: toda saída inicia com `🐹:`.
+- **Mensagens padronizadas**: toda saída inicia com `🦋:`.
 
 ## 🧠 Competências técnicas demonstradas
 
@@ -20,7 +20,7 @@ O **Gopher** é uma CLI em Go para criar, editar e executar agentes de IA voltad
 
 ## 🧱 Como funciona
 
-Cada agente possui uma especificação local em JSON dentro de `.gopher/agents`, com:
+Cada agente possui uma especificação local em JSON dentro de `.morpho/agents`, com:
 
 - `name`
 - `description`
@@ -40,17 +40,17 @@ Pré-requisitos:
 Build:
 
 ```bash
-go build -o gopher
+go build -o morpho
 ```
 
 Instalador automático do binário local:
 
 ```bash
 go run . install
-# gera: bin/gopher
+# gera: bin/morpho
 ```
 
-Instalar também em `~/.local/bin` para usar `gopher` diretamente:
+Instalar também em `~/.local/bin` para usar `morpho` diretamente:
 
 ```bash
 go run . install --link-local-bin
@@ -65,8 +65,8 @@ export GEMINI_API_KEY="sua_chave"
 Ou configure via CLI (fora do repositório):
 
 ```bash
-./gopher config set-api-key "sua_chave"
-./gopher config where
+./morpho config set-api-key "sua_chave"
+./morpho config where
 ```
 
 ## ⌨️ Comandos principais
@@ -82,25 +82,37 @@ go run . agent list
 Inicializar agentes pré-selecionados:
 
 ```bash
-./gopher presets init
+./morpho presets init
+```
+
+Listar presets disponíveis e status:
+
+```bash
+./morpho presets list
+```
+
+Inicializar presets com modelo específico:
+
+```bash
+./morpho presets init --model gemini-2.5-flash
 ```
 
 Listar agentes:
 
 ```bash
-./gopher agent list
+./morpho agent list
 ```
 
 Iniciar modo iterativo com navegação por botões:
 
 ```bash
-./gopher interactive
+./morpho interactive
 ```
 
 Criar agente customizado:
 
 ```bash
-./gopher agent create arquiteto-go \
+./morpho agent create arquiteto-go \
   --description "Arquitetura e backend Go" \
   --prompt "Você é um arquiteto Go. Priorize simplicidade, teste e performance." \
   --model "gemini-2.0-flash" \
@@ -110,61 +122,82 @@ Criar agente customizado:
 Editar agente:
 
 ```bash
-./gopher agent edit arquiteto-go --prompt "Novo prompt" --tags "go,api"
+./morpho agent edit arquiteto-go --prompt "Novo prompt" --tags "go,api"
 ```
 
 Configurar modelo de um agente via CLI:
 
 ```bash
-./gopher agent set-model arquiteto-go gemini-2.0-flash
+./morpho agent set-model arquiteto-go gemini-2.0-flash
 ```
 
 Configurar modelo padrão global via CLI:
 
 ```bash
-./gopher model set gemini-2.0-flash
+./morpho model set gemini-2.0-flash
 ```
 
 Listar modelos disponíveis do Gemini:
 
 ```bash
-./gopher model list
+./morpho model list
 ```
 
 Executar agente:
 
 ```bash
-./gopher agent run backend-go "Criar plano para implementar autenticação JWT com testes"
+./morpho agent run backend-go "Criar plano para implementar autenticação JWT com testes"
+```
+
+Configurar política de edição por agentes (modular):
+
+```bash
+./morpho config edit set-mode review
+./morpho config edit set-paths "internal,cmd"
+./morpho config edit show
+```
+
+Executar agente com edição de arquivos:
+
+```bash
+# usa política salva em config (review|auto|off)
+./morpho agent run backend-go "Implementar validação no comando X" --edit
+
+# override só nesta execução
+./morpho agent run backend-go "Ajustar parser" --edit --edit-mode review --edit-paths "internal/agentkit" --edit-max 3
+
+# aprova tudo no modo review
+./morpho agent run backend-go "Refatorar função Y" --edit --edit-mode review --yes
 ```
 
 Cada execução salva um output em:
 
 ```text
-.gopher/outputs/<agente>/
+.morpho/outputs/<agente>/
 ```
 
 Listar outputs (todos os agentes):
 
 ```bash
-./gopher agent output list
+./morpho agent output list
 ```
 
 Listar outputs de um agente específico:
 
 ```bash
-./gopher agent output list backend-go
+./morpho agent output list backend-go
 ```
 
 Visualizar um output específico:
 
 ```bash
-./gopher agent output show backend-go 20260419-101500-plano-auth-jwt.md
+./morpho agent output show backend-go 20260419-101500-plano-auth-jwt.md
 ```
 
 Modo offline (mock):
 
 ```bash
-./gopher agent run backend-go "Refatorar camada de serviço" --mock
+./morpho agent run backend-go "Refatorar camada de serviço" --mock
 ```
 
 ---

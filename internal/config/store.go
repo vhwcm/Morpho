@@ -11,6 +11,7 @@ import (
 type FileConfig struct {
 	GeminiAPIKey string `json:"gemini_api_key"`
 	GeminiModel  string `json:"gemini_model"`
+	AgentEditing AgentEditConfig `json:"agent_editing"`
 }
 
 func configDir() (string, error) {
@@ -18,7 +19,7 @@ func configDir() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return filepath.Join(base, "gopher"), nil
+	return filepath.Join(base, "morpho"), nil
 }
 
 func configFilePath() (string, error) {

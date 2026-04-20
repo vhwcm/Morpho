@@ -1,11 +1,29 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/spf13/cobra"
+	"github.com/vhwcm/Morpho/internal/ui"
+e)
 
 var rootCmd = &cobra.Command{
-	Use:   "gopher",
+	Use:   "morpho",
 	Short: "Sistema agêntico para desenvolvimento de software",
-	Long:  "Gopher é uma CLI para criar, editar e executar agentes de desenvolvimento com Gemini de forma simples.",
+	Long:  "Morpho é uma CLI para criar, editar e executar agentes de desenvolvimento com Gemini de forma simples.",
+}
+
+func init() {
+	origHelp := rootCmd.HelpFunc()
+	rootCmd.SetHelpFunc(func(c *cobra.Command, args []string) {
+		if c == rootCmd || c.Name() == "help" && len(args) == 0 {
+			ui.ShowCustomHelp(rootCmd, args)
+		} else {
+			origHelp(c, args)
+		}
+	})
+
+	rootCmd.Run = func(c *cobra.Command, args []string) {
+		ui.ShowCustomHelp(c, args)
+	}
 }
 
 func Execute() error {

@@ -14,7 +14,7 @@ import (
 var validName = regexp.MustCompile(`^[a-zA-Z0-9_-]+$`)
 
 func agentDir() string {
-	return filepath.Join(".gopher", "agents")
+	return filepath.Join(".morpho", "agents")
 }
 
 func specPath(name string) string {
