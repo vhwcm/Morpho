@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"github.com/vhwcm/Morpho/internal/ui"
-e)
+)
 
 var rootCmd = &cobra.Command{
 	Use:   "morpho",
