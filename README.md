@@ -1,13 +1,14 @@
 # 🦋 Morpho: Sistema Agêntico para Desenvolvimento
 
 O **Morpho** é uma CLI em Go para criar, editar e executar agentes de IA voltados a desenvolvimento de software.
+<img width="1626" height="862" alt="image" src="https://github.com/user-attachments/assets/be688956-a00f-4250-baba-a3957a85d98a" />
 
 ## 🚀 Diferenciais
 
 - **Baixo custo**: usa a API do Gemini para viabilizar um fluxo acessível.
 - **Configuração simples**: cada agente pode ser criado e editado via CLI.
 - **Agentes prontos**: presets para começar rápido (backend, frontend, review, QA, DevOps).
-- **Mensagens padronizadas**: toda saída inicia com `🦋:`.
+
 
 ## 🧠 Competências técnicas demonstradas
 
@@ -29,6 +30,10 @@ Cada agente possui uma especificação local em JSON dentro de `.morpho/agents`,
 - `tags`
 
 Você pode versionar essas especificações no Git e ajustar o comportamento sem alterar código Go.
+
+
+## Arquitetura
+<img width="930" height="747" alt="image" src="https://github.com/user-attachments/assets/46a88688-6f78-439a-89d4-6519e184865c" />
 
 ## 📦 Instalação
 
