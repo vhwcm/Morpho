@@ -6,7 +6,6 @@
 - [ ] **RF19**: Suporte a parâmetros de contexto por agente (stack, repo, idioma).
 - [ ] **RNF06**: Adicionar testes automatizados para comandos da CLI.
       por agente (stack, repo, idioma).
-- [ ] **RNF25**: Implementar sistema de memória permanente com RAG
 
 ## 🟡 In Progress
 
@@ -38,3 +37,4 @@
 - [x] **RF23**: Instalador automático (`morpho install`) para gerar `bin/morpho`.
 - [x] **RNF04**: Tratamento inicial de timeout/rate-limit com backoff e retries.
 - [x] **RNF07**: Output visual premium na CLI (tema, componentes e estados).
+- [x] **RNF25**: Sistema de memória permanente por agente com RAG.

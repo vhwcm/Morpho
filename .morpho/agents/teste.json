@@ -1,0 +1,9 @@
+{
+  "name": "teste",
+  "description": "principal engienier",
+  "system_prompt": "teste",
+  "model": "gemini-2.5-flash",
+  "tags": [],
+  "created_at": "2026-04-20T23:22:07.113081329Z",
+  "updated_at": "2026-04-20T23:22:07.113081329Z"
+}

@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"strings"
+
+	"github.com/vhwcm/Morpho/internal/gemini"
 )
 
 func RunSolutionAgent(ctx context.Context, ai AIClient, input DiagnosticInput, plan PlanResult, logs LogResult, metrics MetricsResult) (string, error) {
@@ -20,10 +22,10 @@ func RunSolutionAgent(ctx context.Context, ai AIClient, input DiagnosticInput, p
 		return "Solução padrão: priorize endpoints com erro 500, valide timeouts externos e aplique mitigação de carga.", nil
 	}
 
-	out, err := ai.Generate(ctx, prompt)
+	res, err := ai.Chat(ctx, "", []gemini.ChatMessage{{Role: "user", Content: prompt}})
 	if err != nil {
 		return "", err
 	}
 
-	return strings.TrimSpace(out), nil
+	return strings.TrimSpace(res.Message), nil
 }

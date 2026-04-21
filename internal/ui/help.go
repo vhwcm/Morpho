@@ -12,7 +12,7 @@ import (
 )
 
 //go:embed morphoLogo.txt
-var hamsterArt string
+var morphoArt string
 
 
 var (
@@ -63,17 +63,20 @@ func ShowCustomHelp(cmd *cobra.Command, args []string) {
 		w = 80 // Default reasonable width
 	}
 
-	title := titleStyle.Render("🐹 " + cmd.Short)
+	title := titleStyle.Render("🦋 " + cmd.Short)
 	desc := lipgloss.NewStyle().Width(w - 4).Foreground(lipgloss.Color("243")).Render(cmd.Long)
 
-	art := artStyle.Render(colorizeLogo(renderTransparentLogo(hamsterArt)))
+	art := artStyle.Render(colorizeLogo(renderTransparentLogo(morphoArt)))
 	commandsSection := buildCommandsSection(cmd)
 
 	var panelContent string
-	if w >= lipgloss.Width(art)+lipgloss.Width(commandsSection)+8 {
+	// Se couber a arte + comandos + margens (8 caracteres de folga), mostra horizontal
+	if w >= lipgloss.Width(art)+lipgloss.Width(commandsSection)+10 {
 		panelContent = lipgloss.JoinHorizontal(lipgloss.Top, art, commandsSection)
 	} else {
-		panelContent = lipgloss.JoinVertical(lipgloss.Left, art, "", commandsSection)
+		// Se não couber horizontalmente, removemos a logo (morphoArt) conforme solicitado
+		// e mostramos apenas a seção de comandos.
+		panelContent = commandsSection
 	}
 
 	layout := panelStyleHelp.Render(panelContent)

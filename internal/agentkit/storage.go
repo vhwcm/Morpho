@@ -9,6 +9,8 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/vhwcm/Morpho/internal/logger"
 )
 
 var validName = regexp.MustCompile(`^[a-zA-Z0-9_-]+$`)
@@ -26,7 +28,9 @@ func ensureDir() error {
 }
 
 func SaveSpec(spec Spec) error {
+	logger.Debug("Salvando especificação do agente", map[string]interface{}{"name": spec.Name})
 	if err := validateSpec(spec); err != nil {
+		logger.Error("Validação de especificação falhou", err, map[string]interface{}{"name": spec.Name})
 		return err
 	}
 
@@ -45,10 +49,15 @@ func SaveSpec(spec Spec) error {
 
 	p, err := json.MarshalIndent(spec, "", "  ")
 	if err != nil {
+		logger.Error("Erro ao serializar especificação do agente", err, map[string]interface{}{"name": spec.Name})
 		return err
 	}
 
-	return os.WriteFile(specPath(spec.Name), p, 0o644)
+	err = os.WriteFile(specPath(spec.Name), p, 0o644)
+	if err != nil {
+		logger.Error("Erro ao escrever arquivo do agente", err, map[string]interface{}{"path": specPath(spec.Name)})
+	}
+	return err
 }
 
 func LoadSpec(name string) (Spec, error) {
@@ -61,14 +70,27 @@ func LoadSpec(name string) (Spec, error) {
 		if os.IsNotExist(err) {
 			return Spec{}, fmt.Errorf("agente '%s' não encontrado", name)
 		}
+		logger.Error("Erro ao ler arquivo do agente", err, map[string]interface{}{"name": name})
 		return Spec{}, err
 	}
 
 	var spec Spec
 	if err := json.Unmarshal(content, &spec); err != nil {
+		logger.Error("Erro ao desserializar agente", err, map[string]interface{}{"name": name})
 		return Spec{}, err
 	}
 	return spec, nil
+}
+
+func DeleteSpec(name string) error {
+	if strings.TrimSpace(name) == "" {
+		return fmt.Errorf("nome do agente é obrigatório")
+	}
+	path := specPath(name)
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		return fmt.Errorf("agente '%s' não encontrado", name)
+	}
+	return os.Remove(path)
 }
 
 func ListSpecs() ([]Spec, error) {

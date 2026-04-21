@@ -36,6 +36,28 @@ func (f *fakeAI) Generate(_ context.Context, prompt string) (string, error) {
 	return "ok", nil
 }
 
+func (f *fakeAI) Chat(ctx context.Context, systemPrompt string, history []gemini.ChatMessage, _ ...gemini.Tool) (gemini.ChatResult, error) {
+	prompt := systemPrompt
+	if len(history) == 0 {
+		out, err := f.Generate(ctx, prompt)
+		return gemini.ChatResult{Message: out}, err
+	}
+	if prompt != "" {
+		prompt += "\n"
+	}
+	prompt += history[len(history)-1].Content
+	out, err := f.Generate(ctx, prompt)
+	return gemini.ChatResult{Message: out}, err
+}
+
+func (f *fakeAI) Embed(_ context.Context, text string) ([]float64, error) {
+	base := float64(len(strings.TrimSpace(text)))
+	if base == 0 {
+		base = 1
+	}
+	return []float64{base, base / 2, base / 3}, nil
+}
+
 func withTempWD(t *testing.T) {
 	t.Helper()
 
@@ -60,7 +82,7 @@ func TestBuiltinPresetsModelSelection(t *testing.T) {
 		t.Fatalf("esperava presets padrão")
 	}
 	for _, p := range presets {
-		if p.Model != "gemini-2.0-flash" {
+		if p.Model != "gemini-2.5-flash" {
 			t.Fatalf("modelo padrão inesperado: %s", p.Model)
 		}
 	}
@@ -76,9 +98,9 @@ func TestBuiltinPresetsModelSelection(t *testing.T) {
 func TestSeedPresetsForceAndOverwrite(t *testing.T) {
 	withTempWD(t)
 
-	expected := len(BuiltinPresets("gemini-2.0-flash"))
+	expected := len(BuiltinPresets("gemini-2.5-flash"))
 
-	created, err := SeedPresets(false, "gemini-2.0-flash")
+	created, err := SeedPresets(false, "gemini-2.5-flash")
 	if err != nil {
 		t.Fatalf("erro ao iniciar presets: %v", err)
 	}
@@ -98,7 +120,7 @@ func TestSeedPresetsForceAndOverwrite(t *testing.T) {
 	if err != nil {
 		t.Fatalf("erro ao carregar spec backend-go: %v", err)
 	}
-	if backend.Model != "gemini-2.0-flash" {
+	if backend.Model != "gemini-2.5-flash" {
 		t.Fatalf("modelo não deveria ter mudado sem force: %s", backend.Model)
 	}
 
@@ -246,7 +268,7 @@ func TestRunUsesPromptAndTrimsOutput(t *testing.T) {
 	if ai.calls != 1 {
 		t.Fatalf("generate deveria ser chamado uma vez")
 	}
-	if !strings.Contains(ai.prompts[0], "Instruções do agente") || !strings.Contains(ai.prompts[0], "resolver bug") {
+	if !strings.Contains(ai.prompts[0], "resolver bug") || !strings.Contains(ai.prompts[0], "seja objetivo") {
 		t.Fatalf("prompt montado não contém contexto esperado: %s", ai.prompts[0])
 	}
 }
@@ -265,8 +287,8 @@ func TestQueueRetriesAndStopsOnNonRetryable(t *testing.T) {
 		if err != nil {
 			t.Fatalf("deveria ter sucesso após retries: %v", err)
 		}
-		if out != "ok" {
-			t.Fatalf("output inesperado: %s", out)
+		if out.Message != "ok" {
+			t.Fatalf("output inesperado: %s", out.Message)
 		}
 		if ai.calls != 3 {
 			t.Fatalf("deveria tentar 3 vezes, tentou %d", ai.calls)

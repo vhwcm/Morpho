@@ -1,4 +1,4 @@
-# Arquitetura do Sistema — Morpho (Gopher)
+# Arquitetura do Sistema — Morpho
 
 Este documento descreve a arquitetura de pastas/arquivos e o fluxo principal do sistema.
 
@@ -45,7 +45,12 @@ O Morpho é uma CLI em Go orientada a agentes de desenvolvimento.
 │   │   ├── env.go
 │   │   ├── store.go
 │   │   └── editing.go
-│   └── ui/
+│   ├── memory/
+│   │   ├── store.go
+│   │   ├── retriever.go
+│   │   ├── ingest.go
+│   │   └── extract.go
+│   ├── ui/
 │       ├── help.go
 │       ├── messages.go
 │       └── morphoLogo.txt
@@ -77,6 +82,15 @@ O Morpho é uma CLI em Go orientada a agentes de desenvolvimento.
 - `outputs.go`: grava/leitura de outputs em `.morpho/outputs/`
 - `editing.go`: plano de edição, validação de path e aplicação com backup
 
+### 2.1) Memória semântica (`internal/memory/`)
+
+- Banco SQLite por agente em `.morpho/memory/<agente>/knowledge.db`
+- Ingestão automática de conhecimento após execução
+- Retenção real por TTL (`ttl_hours`) com expiração de documentos
+- Recuperação híbrida (score semântico + lexical)
+- Política explícita de leitura: `self` (somente o próprio agente) ou `shared` (pode ler memória de outros agentes)
+- Fallback lexical quando embeddings não estiverem disponíveis
+
 ### 3) Diagnóstico multiagente (`internal/agents/`)
 
 - Pipeline especializado (plan/log/metrics/solution)
@@ -106,13 +120,15 @@ O Morpho é uma CLI em Go orientada a agentes de desenvolvimento.
 1. Usuário chama `agent run`.
 2. CLI carrega `Spec` do agente.
 3. Resolve configuração (`API key`, modelo, política de edição).
-4. Executa tarefa via fila com retry (`agentkit.RunQueued`).
-5. Salva output em `.morpho/outputs/<agente>/`.
-6. Opcionalmente, gera plano de edição e aplica arquivos conforme política:
+4. Recupera contexto RAG da memória do agente (quando habilitado).
+5. Executa tarefa via fila com retry (`agentkit.RunQueued`).
+6. Salva output em `.morpho/outputs/<agente>/`.
+7. Ingere task+resultado na memória do agente para próximas execuções.
+8. Opcionalmente, gera plano de edição e aplica arquivos conforme política:
    - `off`: não aplica
    - `review`: aprova arquivo por arquivo
    - `auto`: aplica automaticamente
-7. Em arquivos alterados, cria backup em `.morpho/backups/<timestamp>/`.
+9. Em arquivos alterados, cria backup em `.morpho/backups/<timestamp>/`.
 
 ## Armazenamento e segurança
 

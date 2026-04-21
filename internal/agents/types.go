@@ -5,12 +5,15 @@ import (
 	"fmt"
 	"strings"
 	"time"
+
+	"github.com/vhwcm/Morpho/internal/gemini"
 )
 
 const MessagePrefix = "🦋: "
 
 type AIClient interface {
 	Generate(ctx context.Context, prompt string) (string, error)
+	Chat(ctx context.Context, systemPrompt string, history []gemini.ChatMessage, tools ...gemini.Tool) (gemini.ChatResult, error)
 }
 
 type DiagnosticInput struct {

@@ -7,6 +7,8 @@ import (
 	"os"
 	"regexp"
 	"strings"
+
+	"github.com/vhwcm/Morpho/internal/gemini"
 )
 
 func RunLogAgent(ctx context.Context, ai AIClient, logFile string) (LogResult, error) {
@@ -50,8 +52,8 @@ func RunLogAgent(ctx context.Context, ai AIClient, logFile string) (LogResult, e
 	summary := fmt.Sprintf("Foram analisadas as últimas %d linhas de %s.", len(tail), logFile)
 	if ai != nil {
 		prompt := fmt.Sprintf("Resuma em 1-2 frases os principais riscos deste conjunto de logs:\n%s", strings.Join(matches, "\n"))
-		if out, err := ai.Generate(ctx, prompt); err == nil && strings.TrimSpace(out) != "" {
-			summary = out
+		if out, err := ai.Chat(ctx, "", []gemini.ChatMessage{{Role: "user", Content: prompt}}); err == nil && strings.TrimSpace(out.Message) != "" {
+			summary = out.Message
 		}
 	}
 

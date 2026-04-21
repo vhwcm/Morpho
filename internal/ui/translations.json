@@ -1,0 +1,139 @@
+{
+  "en": {
+    "app.name": "Morpho",
+    "app.tagline": "Agentic system for software development",
+
+    "common.yes": "Yes",
+    "common.no": "No",
+    "common.cancel": "Cancel",
+
+    "ui.status.info": "INFO",
+    "ui.status.ok": "OK",
+    "ui.status.warn": "WARN",
+    "ui.status.error": "ERROR",
+
+    "ui.header.installation": "Morpho Installation",
+    "ui.header.execution": "Agent Execution",
+    "ui.header.outputs": "Agent Outputs",
+    "ui.header.presets": "Available Presets",
+    "ui.header.models": "Available Gemini Models",
+    "ui.header.config": "Local Configuration",
+    "ui.header.editingPlan": "File Editing Plan",
+
+    "agent.notFound": "Agent '{name}' not found",
+    "agent.nameRequired": "Agent name is required",
+    "agent.promptRequired": "Agent prompt is required",
+    "agent.modelRequired": "Agent model is required",
+    "agent.taskRequired": "Task is required",
+
+    "run.finished": "Execution finished successfully.",
+    "run.savedOutput": "Output saved to: {path}",
+    "run.contextAttached": "Shared output context attached to execution.",
+
+    "edit.mode.off": "File editing by agents is disabled.",
+    "edit.mode.review": "Review mode: approve each edit before applying.",
+    "edit.mode.auto": "Auto mode: apply all valid edits automatically.",
+    "edit.approval.prompt": "Apply edit {index}/{total} to {path}?",
+    "edit.noChanges": "No edits proposed by the agent.",
+
+    "install.building": "Building binary at: {path}",
+    "install.done": "Installation completed.",
+    "install.binaryPath": "Binary generated at: {path}",
+
+    "config.apiKey.saved": "API key saved successfully to a secure local file.",
+    "config.where": "Configuration file: {path}",
+    "config.model.updated": "Default model updated to '{model}'."
+  },
+
+  "es": {
+    "app.name": "Morpho",
+    "app.tagline": "Sistema agéntico para desarrollo de software",
+
+    "common.yes": "Sí",
+    "common.no": "No",
+    "common.cancel": "Cancelar",
+
+    "ui.status.info": "INFO",
+    "ui.status.ok": "OK",
+    "ui.status.warn": "WARN",
+    "ui.status.error": "ERROR",
+
+    "ui.header.installation": "Instalación de Morpho",
+    "ui.header.execution": "Ejecución del agente",
+    "ui.header.outputs": "Salidas de agentes",
+    "ui.header.presets": "Presets disponibles",
+    "ui.header.models": "Modelos Gemini disponibles",
+    "ui.header.config": "Configuración local",
+    "ui.header.editingPlan": "Plan de edición de archivos",
+
+    "agent.notFound": "Agente '{name}' no encontrado",
+    "agent.nameRequired": "El nombre del agente es obligatorio",
+    "agent.promptRequired": "El prompt del agente es obligatorio",
+    "agent.modelRequired": "El modelo del agente es obligatorio",
+    "agent.taskRequired": "La tarea es obligatoria",
+
+    "run.finished": "Ejecución finalizada con éxito.",
+    "run.savedOutput": "Salida guardada en: {path}",
+    "run.contextAttached": "Contexto compartido de salidas adjuntado a la ejecución.",
+
+    "edit.mode.off": "La edición de archivos por agentes está desactivada.",
+    "edit.mode.review": "Modo revisión: aprobar cada edición antes de aplicar.",
+    "edit.mode.auto": "Modo automático: aplicar todas las ediciones válidas automáticamente.",
+    "edit.approval.prompt": "¿Aplicar la edición {index}/{total} en {path}?",
+    "edit.noChanges": "No hay ediciones propuestas por el agente.",
+
+    "install.building": "Compilando binario en: {path}",
+    "install.done": "Instalación completada.",
+    "install.binaryPath": "Binario generado en: {path}",
+
+    "config.apiKey.saved": "Clave API guardada correctamente en un archivo local seguro.",
+    "config.where": "Archivo de configuración: {path}",
+    "config.model.updated": "Modelo predeterminado actualizado a '{model}'."
+  },
+
+  "pt": {
+    "app.name": "Morpho",
+    "app.tagline": "Sistema agêntico para desenvolvimento de software",
+
+    "common.yes": "Sim",
+    "common.no": "Não",
+    "common.cancel": "Cancelar",
+
+    "ui.status.info": "INFO",
+    "ui.status.ok": "OK",
+    "ui.status.warn": "WARN",
+    "ui.status.error": "ERROR",
+
+    "ui.header.installation": "Instalação do Morpho",
+    "ui.header.execution": "Execução do agente",
+    "ui.header.outputs": "Outputs dos agentes",
+    "ui.header.presets": "Presets disponíveis",
+    "ui.header.models": "Modelos Gemini disponíveis",
+    "ui.header.config": "Configuração local",
+    "ui.header.editingPlan": "Plano de edição de arquivos",
+
+    "agent.notFound": "Agente '{name}' não encontrado",
+    "agent.nameRequired": "Nome do agente é obrigatório",
+    "agent.promptRequired": "Prompt do agente é obrigatório",
+    "agent.modelRequired": "Modelo do agente é obrigatório",
+    "agent.taskRequired": "Tarefa é obrigatória",
+
+    "run.finished": "Execução finalizada com sucesso.",
+    "run.savedOutput": "Output salvo em: {path}",
+    "run.contextAttached": "Contexto compartilhado de outputs anexado à execução.",
+
+    "edit.mode.off": "Edição de arquivos por agentes está desativada.",
+    "edit.mode.review": "Modo review: aprovar cada edição antes de aplicar.",
+    "edit.mode.auto": "Modo automático: aplicar todas as edições válidas automaticamente.",
+    "edit.approval.prompt": "Aplicar edição {index}/{total} em {path}?",
+    "edit.noChanges": "Nenhuma edição proposta pelo agente.",
+
+    "install.building": "Compilando binário em: {path}",
+    "install.done": "Instalação concluída.",
+    "install.binaryPath": "Binário gerado em: {path}",
+
+    "config.apiKey.saved": "API key salva com sucesso em arquivo local seguro.",
+    "config.where": "Arquivo de configuração: {path}",
+    "config.model.updated": "Modelo padrão atualizado para '{model}'."
+  }
+}

@@ -59,7 +59,7 @@ func TestSaveGeminiHelpers(t *testing.T) {
 	if err := SaveGeminiAPIKey("  api-key  "); err != nil {
 		t.Fatalf("erro ao salvar api key: %v", err)
 	}
-	if err := SaveGeminiModel("  gemini-2.0-flash  "); err != nil {
+	if err := SaveGeminiModel("  gemini-2.5-flash  "); err != nil {
 		t.Fatalf("erro ao salvar modelo: %v", err)
 	}
 
@@ -70,7 +70,7 @@ func TestSaveGeminiHelpers(t *testing.T) {
 	if cfg.GeminiAPIKey != "api-key" {
 		t.Fatalf("api key deveria estar trimada: %q", cfg.GeminiAPIKey)
 	}
-	if cfg.GeminiModel != "gemini-2.0-flash" {
+	if cfg.GeminiModel != "gemini-2.5-flash" {
 		t.Fatalf("modelo deveria estar trimado: %q", cfg.GeminiModel)
 	}
 }
@@ -100,7 +100,7 @@ func TestLoadPrecedenceAndDefaults(t *testing.T) {
 		t.Fatalf("erro ao limpar config em arquivo: %v", err)
 	}
 	env = Load()
-	if env.GeminiModel != "gemini-2.0-flash" {
+	if env.GeminiModel != "gemini-2.5-flash" {
 		t.Fatalf("deveria usar modelo padrão quando nada está configurado: %s", env.GeminiModel)
 	}
 	if env.GeminiAPIKey != "" {
@@ -108,6 +108,18 @@ func TestLoadPrecedenceAndDefaults(t *testing.T) {
 	}
 	if env.AgentEditing.Mode != EditModeOff {
 		t.Fatalf("modo padrão de edição deveria ser off, got=%s", env.AgentEditing.Mode)
+	}
+	if !env.Memory.Enabled {
+		t.Fatalf("memória deveria vir habilitada por padrão")
+	}
+	if env.Memory.TopK <= 0 || env.Memory.MaxChars <= 0 {
+		t.Fatalf("defaults de memória inválidos: %+v", env.Memory)
+	}
+	if env.Memory.ReadPolicy != MemoryReadPolicySelf {
+		t.Fatalf("policy padrão deveria ser self, got=%s", env.Memory.ReadPolicy)
+	}
+	if env.Memory.TTLHours <= 0 {
+		t.Fatalf("ttl padrão deveria ser > 0, got=%d", env.Memory.TTLHours)
 	}
 }
 
@@ -150,5 +162,34 @@ func TestAgentEditConfigHelpers(t *testing.T) {
 
 	if err := SaveAgentEditMode("invalid"); err == nil {
 		t.Fatalf("esperava erro para mode inválido")
+	}
+}
+
+func TestMemoryConfigHelpers(t *testing.T) {
+	setupConfigEnv(t)
+
+	if err := SaveMemoryReadPolicy("shared"); err != nil {
+		t.Fatalf("erro ao salvar policy shared: %v", err)
+	}
+	if err := SaveMemoryTTLHours(48); err != nil {
+		t.Fatalf("erro ao salvar ttl: %v", err)
+	}
+
+	loaded := Load()
+	if loaded.Memory.ReadPolicy != MemoryReadPolicyShared {
+		t.Fatalf("policy esperada shared, got=%s", loaded.Memory.ReadPolicy)
+	}
+	if !loaded.Memory.CrossAgentRead {
+		t.Fatalf("cross-agent deveria estar true quando policy=shared")
+	}
+	if loaded.Memory.TTLHours != 48 {
+		t.Fatalf("ttl esperado 48, got=%d", loaded.Memory.TTLHours)
+	}
+
+	if err := SaveMemoryReadPolicy("invalid"); err == nil {
+		t.Fatalf("esperava erro para policy inválida")
+	}
+	if err := SaveMemoryTTLHours(0); err == nil {
+		t.Fatalf("esperava erro para ttl inválido")
 	}
 }

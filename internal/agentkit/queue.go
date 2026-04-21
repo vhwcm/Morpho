@@ -10,18 +10,20 @@ import (
 	"time"
 
 	"github.com/vhwcm/Morpho/internal/gemini"
+	"github.com/vhwcm/Morpho/internal/logger"
 )
 
 type QueueRequest struct {
 	AI             AIClient
 	Spec           Spec
 	Task           string
+	History        []gemini.ChatMessage
 	AttemptTimeout time.Duration
 }
 
 type queueResult struct {
-	output string
-	err    error
+	res gemini.ChatResult
+	err error
 }
 
 type queueJob struct {
@@ -78,13 +80,18 @@ func (q *QueueManager) config() (int, time.Duration) {
 	return q.maxRetries, q.retryDelay
 }
 
-func (q *QueueManager) Enqueue(ctx context.Context, req QueueRequest) (string, error) {
+func (q *QueueManager) Enqueue(ctx context.Context, req QueueRequest) (gemini.ChatResult, error) {
 	if req.AI == nil {
-		return "", errors.New("cliente de IA inválido")
+		return gemini.ChatResult{}, errors.New("cliente de IA inválido")
 	}
-	if strings.TrimSpace(req.Task) == "" {
-		return "", errors.New("tarefa vazia")
+	
+	if len(req.History) == 0 && strings.TrimSpace(req.Task) == "" {
+		return gemini.ChatResult{}, errors.New("tarefa vazia")
 	}
+
+	logger.Debug("Nova tarefa enfileirada", map[string]interface{}{
+		"agent": req.Spec.Name,
+	})
 
 	job := queueJob{
 		req: req,
@@ -93,52 +100,88 @@ func (q *QueueManager) Enqueue(ctx context.Context, req QueueRequest) (string, e
 
 	select {
 	case <-ctx.Done():
-		return "", ctx.Err()
+		return gemini.ChatResult{}, ctx.Err()
 	case q.jobs <- job:
 	}
 
 	select {
 	case <-ctx.Done():
-		return "", ctx.Err()
+		logger.Error("Contexto cancelado enquanto aguardava resposta da fila", ctx.Err())
+		return gemini.ChatResult{}, ctx.Err()
 	case result := <-job.res:
-		return result.output, result.err
+		logger.Debug("Tarefa finalizada na fila", map[string]interface{}{
+			"agent": req.Spec.Name,
+			"success": result.err == nil,
+		})
+		return result.res, result.err
 	}
 }
 
 func (q *QueueManager) worker() {
+	defer logger.RecoverPanic()
+	logger.Debug("Worker da fila de IA iniciado")
+	lastRequest := time.Now().Add(-1 * time.Second)
 	for job := range q.jobs {
-		output, err := q.execute(job.req)
-		job.res <- queueResult{output: output, err: err}
+		elapsed := time.Since(lastRequest)
+		if elapsed < 500*time.Millisecond {
+			logger.Debug("Cooldown da fila ativo", map[string]interface{}{"wait": (500*time.Millisecond - elapsed).String()})
+			time.Sleep(500*time.Millisecond - elapsed)
+		}
+
+		logger.Info("Worker processando tarefa", map[string]interface{}{"agent": job.req.Spec.Name})
+		res, err := q.execute(job.req)
+		lastRequest = time.Now()
+		job.res <- queueResult{res: res, err: err}
 	}
 }
 
-func (q *QueueManager) execute(req QueueRequest) (string, error) {
+func (q *QueueManager) execute(req QueueRequest) (gemini.ChatResult, error) {
 	maxRetries, retryDelay := q.config()
 
 	var lastErr error
 	for attempt := 0; attempt <= maxRetries; attempt++ {
+		if attempt > 0 {
+			logger.Info("Retentando tarefa", map[string]interface{}{
+				"agent":   req.Spec.Name,
+				"attempt": attempt,
+				"delay":   (retryDelay * time.Duration(attempt)).String(),
+			})
+		}
+
 		attemptCtx := context.Background()
 		cancel := func() {}
 		if req.AttemptTimeout > 0 {
 			attemptCtx, cancel = context.WithTimeout(context.Background(), req.AttemptTimeout)
 		}
 
-		out, err := Run(attemptCtx, req.AI, req.Spec, req.Task)
+		var res gemini.ChatResult
+		var err error
+
+		if len(req.History) > 0 {
+			res, err = RunWithResult(attemptCtx, req.AI, req.Spec, req.History)
+		} else {
+			history := []gemini.ChatMessage{{Role: "user", Content: req.Task}}
+			res, err = RunWithResult(attemptCtx, req.AI, req.Spec, history)
+		}
+
 		cancel()
 
 		if err == nil {
-			return out, nil
+			return res, nil
 		}
 
 		lastErr = err
 		if !isRetryableQueueError(err) || attempt == maxRetries {
+			if attempt == maxRetries {
+				logger.Error("Limite de retries atingido", err, map[string]interface{}{"agent": req.Spec.Name})
+			}
 			break
 		}
 
 		time.Sleep(retryDelay * time.Duration(attempt+1))
 	}
 
-	return "", fmt.Errorf("falha ao executar agente '%s' após retries: %w", req.Spec.Name, lastErr)
+	return gemini.ChatResult{}, fmt.Errorf("falha ao executar agente '%s' após retries: %w", req.Spec.Name, lastErr)
 }
 
 func isRetryableQueueError(err error) bool {
@@ -163,6 +206,9 @@ func isRetryableQueueError(err error) bool {
 	}
 
 	msg := strings.ToLower(err.Error())
+	if strings.Contains(msg, "429") || strings.Contains(msg, "quota") || strings.Contains(msg, "rate limit") {
+		return true
+	}
 	return strings.Contains(msg, "deadline exceeded") || strings.Contains(msg, "timeout")
 }
 
@@ -172,6 +218,6 @@ func ConfigureDefaultQueue(maxRetries int, retryDelay time.Duration) {
 	defaultQueue.Configure(maxRetries, retryDelay)
 }
 
-func RunQueued(ctx context.Context, req QueueRequest) (string, error) {
+func RunQueued(ctx context.Context, req QueueRequest) (gemini.ChatResult, error) {
 	return defaultQueue.Enqueue(ctx, req)
 }

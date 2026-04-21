@@ -25,7 +25,7 @@ func testHTTPResponse(status int, body string) *http.Response {
 }
 
 func TestNewClientValidationAndDefaults(t *testing.T) {
-	if _, err := NewClient("", "gemini-2.0-flash"); !errors.Is(err, ErrMissingAPIKey) {
+	if _, err := NewClient("", "gemini-2.5-flash"); !errors.Is(err, ErrMissingAPIKey) {
 		t.Fatalf("esperava ErrMissingAPIKey, got=%v", err)
 	}
 
@@ -33,7 +33,7 @@ func TestNewClientValidationAndDefaults(t *testing.T) {
 	if err != nil {
 		t.Fatalf("erro ao criar client: %v", err)
 	}
-	if c.model != "gemini-2.0-flash" {
+	if c.model != "gemini-2.5-flash" {
 		t.Fatalf("modelo padrão inesperado: %s", c.model)
 	}
 }
@@ -132,7 +132,7 @@ func TestClientGenerateErrors(t *testing.T) {
 			return testHTTPResponse(http.StatusTooManyRequests, `{"error":"rate limited"}`), nil
 		})
 
-		c := &Client{apiKey: "k", model: "gemini-2.0-flash", httpClient: &http.Client{Transport: transport}}
+		c := &Client{apiKey: "k", model: "gemini-2.5-flash", httpClient: &http.Client{Transport: transport}}
 
 		_, err := c.Generate(context.Background(), "teste")
 		if err == nil {
@@ -156,7 +156,7 @@ func TestClientGenerateErrors(t *testing.T) {
 			return testHTTPResponse(http.StatusOK, `{"candidates":[]}`), nil
 		})
 
-		c := &Client{apiKey: "k", model: "gemini-2.0-flash", httpClient: &http.Client{Transport: transport}}
+		c := &Client{apiKey: "k", model: "gemini-2.5-flash", httpClient: &http.Client{Transport: transport}}
 
 		_, err := c.Generate(context.Background(), "teste")
 		if err == nil {
@@ -172,7 +172,7 @@ func TestClientGenerateErrors(t *testing.T) {
 			return nil, errors.New("network down")
 		})
 
-		c := &Client{apiKey: "k", model: "gemini-2.0-flash", httpClient: &http.Client{Transport: transport}}
+		c := &Client{apiKey: "k", model: "gemini-2.5-flash", httpClient: &http.Client{Transport: transport}}
 
 		_, err := c.Generate(context.Background(), "teste")
 		if err == nil || !strings.Contains(err.Error(), "network down") {
@@ -196,10 +196,10 @@ func TestClientListModelsSuccessAndErrors(t *testing.T) {
 				t.Fatalf("URL de listagem inesperada: %s", req.URL.String())
 			}
 
-			return testHTTPResponse(http.StatusOK, `{"models":[{"name":"models/gemini-2.0-flash","displayName":"Gemini Flash","supportedGenerationMethods":["generateContent"]}]}`), nil
+			return testHTTPResponse(http.StatusOK, `{"models":[{"name":"models/gemini-2.5-flash","displayName":"Gemini Flash","supportedGenerationMethods":["generateContent"]}]}`), nil
 		})
 
-		c := &Client{apiKey: "test-key", model: "gemini-2.0-flash", httpClient: &http.Client{Transport: transport}}
+		c := &Client{apiKey: "test-key", model: "gemini-2.5-flash", httpClient: &http.Client{Transport: transport}}
 
 		models, err := c.ListModels(context.Background())
 		if err != nil {
@@ -208,7 +208,7 @@ func TestClientListModelsSuccessAndErrors(t *testing.T) {
 		if len(models) != 1 {
 			t.Fatalf("quantidade inesperada de modelos: %d", len(models))
 		}
-		if models[0].Name != "models/gemini-2.0-flash" || !models[0].SupportsGenerateContent() {
+		if models[0].Name != "models/gemini-2.5-flash" || !models[0].SupportsGenerateContent() {
 			t.Fatalf("modelo retornado inesperado: %+v", models[0])
 		}
 	})
@@ -218,7 +218,7 @@ func TestClientListModelsSuccessAndErrors(t *testing.T) {
 			return testHTTPResponse(http.StatusUnauthorized, `{"error":"unauthorized"}`), nil
 		})
 
-		c := &Client{apiKey: "k", model: "gemini-2.0-flash", httpClient: &http.Client{Transport: transport}}
+		c := &Client{apiKey: "k", model: "gemini-2.5-flash", httpClient: &http.Client{Transport: transport}}
 
 		_, err := c.ListModels(context.Background())
 		if err == nil {

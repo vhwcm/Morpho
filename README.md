@@ -115,7 +115,7 @@ Criar agente customizado:
 ./morpho agent create arquiteto-go \
   --description "Arquitetura e backend Go" \
   --prompt "Você é um arquiteto Go. Priorize simplicidade, teste e performance." \
-  --model "gemini-2.0-flash" \
+  --model "gemini-2.5-flash" \
   --tags "go,backend,arquitetura"
 ```
 
@@ -128,13 +128,13 @@ Editar agente:
 Configurar modelo de um agente via CLI:
 
 ```bash
-./morpho agent set-model arquiteto-go gemini-2.0-flash
+./morpho agent set-model arquiteto-go gemini-2.5-flash
 ```
 
 Configurar modelo padrão global via CLI:
 
 ```bash
-./morpho model set gemini-2.0-flash
+./morpho model set gemini-2.5-flash
 ```
 
 Listar modelos disponíveis do Gemini:
@@ -174,6 +174,32 @@ Cada execução salva um output em:
 
 ```text
 .morpho/outputs/<agente>/
+```
+
+Memória semântica por agente (RAG):
+
+- Banco por agente em `.morpho/memory/<agente>/knowledge.db`
+- Ingestão automática após `agent run`
+- Recuperação semântica opcional por execução (`--rag`)
+
+Comandos de memória:
+
+```bash
+./morpho agent memory status backend-go
+./morpho agent memory search backend-go "jwt timeout"
+./morpho agent memory reindex backend-go
+./morpho agent memory prune backend-go --max-docs 200
+
+# configuração de hardening
+./morpho config memory show
+./morpho config memory set-read-policy self
+./morpho config memory set-ttl-hours 720
+```
+
+Execução com RAG:
+
+```bash
+./morpho agent run backend-go "resolver timeout no login" --rag --rag-topk 6 --rag-min-score 0.25
 ```
 
 Listar outputs (todos os agentes):

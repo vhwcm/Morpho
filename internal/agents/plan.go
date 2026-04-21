@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"strings"
+
+	"github.com/vhwcm/Morpho/internal/gemini"
 )
 
 func RunPlanAgent(ctx context.Context, ai AIClient, problem string) (PlanResult, error) {
@@ -12,10 +14,10 @@ func RunPlanAgent(ctx context.Context, ai AIClient, problem string) (PlanResult,
 		return PlanResult{Strategy: "Plano padrão: coletar evidências de logs e métricas, depois priorizar hipóteses por impacto."}, nil
 	}
 
-	out, err := ai.Generate(ctx, prompt)
+	res, err := ai.Chat(ctx, "", []gemini.ChatMessage{{Role: "user", Content: prompt}})
 	if err != nil {
 		return PlanResult{}, err
 	}
 
-	return PlanResult{Strategy: strings.TrimSpace(out)}, nil
+	return PlanResult{Strategy: strings.TrimSpace(res.Message)}, nil
 }

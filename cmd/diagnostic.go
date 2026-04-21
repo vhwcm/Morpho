@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 
@@ -16,6 +17,7 @@ import (
 	"github.com/vhwcm/Morpho/internal/agentkit"
 	"github.com/vhwcm/Morpho/internal/config"
 	"github.com/vhwcm/Morpho/internal/gemini"
+	"github.com/vhwcm/Morpho/internal/memory"
 	"github.com/vhwcm/Morpho/internal/ui"
 )
 
@@ -31,6 +33,7 @@ var (
 	agentDescription string
 	agentPrompt      string
 	agentModel       string
+	agentName        string
 	agentTags        string
 	presetsForce     bool
 	presetsModel     string
@@ -49,8 +52,16 @@ var (
 	runEditMaxEdits int
 	runEditYes      bool
 
+	runRAGEnabled  bool
+	runNoRAG       bool
+	runRAGTopK     int
+	runRAGMinScore float64
+
 	configEditMode  string
 	configEditPaths string
+
+	configMemoryReadPolicy string
+	configMemoryTTLHours   int
 )
 
 var agentCmd = &cobra.Command{
@@ -128,7 +139,7 @@ var agentCreateCmd = &cobra.Command{
 			return errors.New("informe --prompt para criar o agente")
 		}
 		if agentModel == "" {
-			agentModel = "gemini-2.0-flash"
+			agentModel = "gemini-2.5-flash"
 		}
 
 		spec := agentkit.Spec{
@@ -153,7 +164,8 @@ var agentEditCmd = &cobra.Command{
 	Short: "Edita especificações de um agente existente",
 	Args:  cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		spec, err := agentkit.LoadSpec(args[0])
+		oldName := args[0]
+		spec, err := agentkit.LoadSpec(oldName)
 		if err != nil {
 			return err
 		}
@@ -169,6 +181,17 @@ var agentEditCmd = &cobra.Command{
 		}
 		if cmd.Flags().Changed("tags") {
 			spec.Tags = splitTags(agentTags)
+		}
+
+		if cmd.Flags().Changed("name") {
+			newName := strings.TrimSpace(agentName)
+			if newName != "" && newName != oldName {
+				if err := agentkit.DeleteSpec(oldName); err != nil {
+					return fmt.Errorf("erro ao remover agente antigo: %w", err)
+				}
+				spec.Name = newName
+				ui.Info(fmt.Sprintf("Agente renomeado de '%s' para '%s'.", oldName, newName))
+			}
 		}
 
 		if err := agentkit.SaveSpec(spec); err != nil {
@@ -237,9 +260,10 @@ var agentOutputListCmd = &cobra.Command{
 }
 
 var agentOutputShowCmd = &cobra.Command{
-	Use:   "show [nome-agente] [arquivo]",
-	Short: "Exibe o conteúdo de um output específico",
-	Args:  cobra.ExactArgs(2),
+	Use:     "show [nome-agente] [arquivo]",
+	Aliases: []string{"view"},
+	Short:   "Exibe o conteúdo de um output específico",
+	Args:    cobra.ExactArgs(2),
 	RunE: func(_ *cobra.Command, args []string) error {
 		content, err := agentkit.ReadOutput(args[0], args[1])
 		if err != nil {
@@ -249,6 +273,42 @@ var agentOutputShowCmd = &cobra.Command{
 		ui.Header("Visualização de output")
 		ui.Panel(fmt.Sprintf("%s / %s", args[0], args[1]), content)
 		return nil
+	},
+}
+
+var agentOutputLastCmd = &cobra.Command{
+	Use:   "last [nome-agente]",
+	Short: "Exibe o conteúdo do output mais recente de um agente",
+	Args:  cobra.ExactArgs(1),
+	RunE: func(_ *cobra.Command, args []string) error {
+		records, err := agentkit.ListOutputs(args[0], 1)
+		if err != nil {
+			return err
+		}
+
+		if len(records) == 0 {
+			ui.Warn(fmt.Sprintf("Nenhum output encontrado para o agente '%s'.", args[0]))
+			return nil
+		}
+
+		last := records[0]
+		content, err := agentkit.ReadOutput(last.Agent, last.FileName)
+		if err != nil {
+			return err
+		}
+
+		ui.Header("Último output do agente")
+		ui.Panel(fmt.Sprintf("%s / %s", last.Agent, last.FileName), content)
+		return nil
+	},
+}
+
+var globalViewCmd = &cobra.Command{
+	Use:   "view [nome-agente] [arquivo]",
+	Short: "Alias rápido para visualizar output de um agente",
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return agentOutputShowCmd.RunE(cmd, args)
 	},
 }
 
@@ -284,6 +344,37 @@ var agentRunCmd = &cobra.Command{
 
 		originalTask := args[1]
 		task := originalTask
+
+		ragEnabled := cfg.Memory.Enabled
+		if runRAGEnabled {
+			ragEnabled = true
+		}
+		if runNoRAG {
+			ragEnabled = false
+		}
+
+		topK := cfg.Memory.TopK
+		if runRAGTopK > 0 {
+			topK = runRAGTopK
+		}
+		minScore := cfg.Memory.MinScore
+		if runRAGMinScore > 0 {
+			minScore = runRAGMinScore
+		}
+
+		if ragEnabled {
+			ragResults, err := memory.SearchWithPolicy(cmd.Context(), spec.Name, originalTask, topK, minScore, ai, cfg.Memory.ReadPolicy)
+			if err != nil {
+				ui.Warn(fmt.Sprintf("RAG indisponível nesta execução: %s", err.Error()))
+			} else if len(ragResults) > 0 {
+				ragCtx := memory.BuildRAGContext(ragResults, cfg.Memory.MaxChars)
+				if ragCtx != "" {
+					task += "\n\nContexto RAG relevante:\n" + ragCtx
+					ui.Info(fmt.Sprintf("Contexto RAG anexado (%d memória(s), policy=%s).", len(ragResults), cfg.Memory.ReadPolicy))
+				}
+			}
+		}
+
 		if !runNoContext {
 			shared, err := agentkit.BuildSharedContext(spec.Name, runContextEntries, runContextChars)
 			if err != nil {
@@ -305,7 +396,7 @@ var agentRunCmd = &cobra.Command{
 			return err
 		}
 
-		ui.Panel(fmt.Sprintf("Resposta do agente '%s'", spec.Name), out)
+		ui.Panel(fmt.Sprintf("Resposta do agente '%s'", spec.Name), out.Message)
 
 		if runEditEnabled {
 			mode := strings.TrimSpace(runEditMode)
@@ -332,7 +423,7 @@ var agentRunCmd = &cobra.Command{
 				}
 
 				editTask := agentkit.BuildEditTask(originalTask, allowedPaths, runEditMaxEdits)
-				editTask += "\n\nContexto adicional da execução anterior:\n" + out
+				editTask += "\n\nContexto adicional da execução anterior:\n" + out.Message
 
 				planRaw, err := agentkit.RunQueued(cmd.Context(), agentkit.QueueRequest{
 					AI:             ai,
@@ -344,7 +435,7 @@ var agentRunCmd = &cobra.Command{
 					return fmt.Errorf("falha ao gerar plano de edição: %w", err)
 				}
 
-				plan, err := agentkit.ParseEditPlan(planRaw)
+				plan, err := agentkit.ParseEditPlan(planRaw.Message)
 				if err != nil {
 					return err
 				}
@@ -416,9 +507,25 @@ var agentRunCmd = &cobra.Command{
 			}
 		}
 
-		savedPath, err := agentkit.SaveAgentOutput(spec.Name, args[1], out)
+		savedPath, err := agentkit.SaveAgentOutput(spec.Name, args[1], out.Message)
 		if err != nil {
 			return err
+		}
+
+		if ragEnabled {
+			err = memory.IngestRun(cmd.Context(), ai, memory.IngestInput{
+				Agent:    spec.Name,
+				Task:     originalTask,
+				Output:   out.Message,
+				Source:   savedPath,
+				MaxChars: cfg.Memory.MaxChars,
+				TTLHours: cfg.Memory.TTLHours,
+			})
+			if err != nil {
+				ui.Warn(fmt.Sprintf("Falha ao ingerir memória do agente: %s", err.Error()))
+			} else {
+				ui.Info("Memória do agente atualizada com esta execução.")
+			}
 		}
 
 		ui.Info(fmt.Sprintf("Output salvo em: %s", savedPath))
@@ -529,9 +636,112 @@ var configWhereCmd = &cobra.Command{
 	},
 }
 
+var configListModelsCmd = &cobra.Command{
+	Use:   "list-models",
+	Short: "Lista os modelos disponíveis para sua API Key",
+	RunE: func(_ *cobra.Command, _ []string) error {
+		apiKey := config.GetGeminiAPIKey()
+		if apiKey == "" {
+			return fmt.Errorf("GEMINI_API_KEY não configurada")
+		}
+
+		c, err := gemini.NewClient(apiKey, "")
+		if err != nil {
+			return err
+		}
+
+		models, err := c.ListModels(context.Background())
+		if err != nil {
+			return err
+		}
+
+		ui.Header("Modelos Disponíveis")
+		var rows [][]string
+		for _, m := range models {
+			methods := strings.Join(m.SupportedGenerationMethods, ", ")
+			rows = append(rows, []string{m.Name, m.DisplayName, methods})
+		}
+		ui.Table([]string{"ID", "Nome", "Métodos"}, rows)
+		return nil
+	},
+}
+
 var configEditCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "Gerencia política de edição de arquivos por agentes",
+}
+
+var configMemoryCmd = &cobra.Command{
+	Use:   "memory",
+	Short: "Gerencia política de memória semântica (RAG)",
+}
+
+var configMemoryShowCmd = &cobra.Command{
+	Use:   "show",
+	Short: "Exibe a configuração atual da memória semântica",
+	RunE: func(_ *cobra.Command, _ []string) error {
+		cfg := config.Load()
+		ui.Header("Configuração de memória semântica")
+		ui.Table(
+			[]string{"Campo", "Valor"},
+			[][]string{
+				{"Enabled", fmt.Sprintf("%t", cfg.Memory.Enabled)},
+				{"Read Policy", cfg.Memory.ReadPolicy},
+				{"Cross Agent Read", fmt.Sprintf("%t", cfg.Memory.CrossAgentRead)},
+				{"TTL Hours", fmt.Sprintf("%d", cfg.Memory.TTLHours)},
+				{"Top K", fmt.Sprintf("%d", cfg.Memory.TopK)},
+				{"Min Score", fmt.Sprintf("%.3f", cfg.Memory.MinScore)},
+				{"Max Chars", fmt.Sprintf("%d", cfg.Memory.MaxChars)},
+			},
+		)
+		ui.Info("Read policy: self (somente memória do próprio agente) | shared (permite memória de outros agentes).")
+		return nil
+	},
+}
+
+var configMemorySetReadPolicyCmd = &cobra.Command{
+	Use:   "set-read-policy [self|shared]",
+	Short: "Define a política explícita de leitura entre agentes",
+	Args:  cobra.MaximumNArgs(1),
+	RunE: func(_ *cobra.Command, args []string) error {
+		policy := strings.TrimSpace(configMemoryReadPolicy)
+		if len(args) == 1 {
+			policy = strings.TrimSpace(args[0])
+		}
+		if policy == "" {
+			return fmt.Errorf("informe a policy por argumento ou --policy")
+		}
+		if err := config.SaveMemoryReadPolicy(policy); err != nil {
+			return err
+		}
+		normalized, _ := config.NormalizeMemoryReadPolicy(policy)
+		ui.Success(fmt.Sprintf("Read policy de memória atualizada para '%s'.", normalized))
+		return nil
+	},
+}
+
+var configMemorySetTTLCmd = &cobra.Command{
+	Use:   "set-ttl-hours [horas]",
+	Short: "Define retenção por TTL em horas para memória persistida",
+	Args:  cobra.MaximumNArgs(1),
+	RunE: func(_ *cobra.Command, args []string) error {
+		ttlHours := configMemoryTTLHours
+		if len(args) == 1 {
+			v, err := strconv.Atoi(strings.TrimSpace(args[0]))
+			if err != nil {
+				return fmt.Errorf("ttl inválido: %w", err)
+			}
+			ttlHours = v
+		}
+		if ttlHours <= 0 {
+			return fmt.Errorf("ttl em horas deve ser maior que zero")
+		}
+		if err := config.SaveMemoryTTLHours(ttlHours); err != nil {
+			return err
+		}
+		ui.Success(fmt.Sprintf("TTL da memória atualizado para %d hora(s).", ttlHours))
+		return nil
+	},
 }
 
 var configEditShowCmd = &cobra.Command{
@@ -765,6 +975,8 @@ func init() {
 	agentCmd.AddCommand(agentRunCmd)
 	agentOutputCmd.AddCommand(agentOutputListCmd)
 	agentOutputCmd.AddCommand(agentOutputShowCmd)
+	agentOutputCmd.AddCommand(agentOutputLastCmd)
+	rootCmd.AddCommand(globalViewCmd)
 
 	presetsCmd.AddCommand(presetsInitCmd)
 	presetsCmd.AddCommand(presetsListCmd)
@@ -772,13 +984,18 @@ func init() {
 	modelCmd.AddCommand(modelSetCmd)
 	modelCmd.AddCommand(modelSetAgentCmd)
 	configCmd.AddCommand(configSetAPIKeyCmd)
+	configCmd.AddCommand(configListModelsCmd)
 	configCmd.AddCommand(configWhereCmd)
 	configCmd.AddCommand(configEditCmd)
+	configCmd.AddCommand(configMemoryCmd)
 	configEditCmd.AddCommand(configEditShowCmd)
 	configEditCmd.AddCommand(configEditSetModeCmd)
 	configEditCmd.AddCommand(configEditSetPathsCmd)
 	configEditCmd.AddCommand(configEditAddPathCmd)
 	configEditCmd.AddCommand(configEditClearPathsCmd)
+	configMemoryCmd.AddCommand(configMemoryShowCmd)
+	configMemoryCmd.AddCommand(configMemorySetReadPolicyCmd)
+	configMemoryCmd.AddCommand(configMemorySetTTLCmd)
 	presetsInitCmd.Flags().BoolVar(&presetsForce, "force", false, "sobrescreve presets já existentes")
 	presetsInitCmd.Flags().StringVar(&presetsModel, "model", "", "modelo aplicado aos presets (padrão: modelo global configurado)")
 	presetsListCmd.Flags().StringVar(&presetsModel, "model", "", "modelo para pré-visualização dos presets (padrão: modelo global configurado)")
@@ -790,12 +1007,13 @@ func init() {
 
 	agentCreateCmd.Flags().StringVar(&agentDescription, "description", "", "descrição curta do agente")
 	agentCreateCmd.Flags().StringVar(&agentPrompt, "prompt", "", "prompt de sistema do agente")
-	agentCreateCmd.Flags().StringVar(&agentModel, "model", "gemini-2.0-flash", "modelo Gemini")
+	agentCreateCmd.Flags().StringVar(&agentModel, "model", "gemini-2.5-flash", "modelo Gemini")
 	agentCreateCmd.Flags().StringVar(&agentTags, "tags", "", "tags separadas por vírgula")
 
 	agentEditCmd.Flags().StringVar(&agentDescription, "description", "", "nova descrição")
 	agentEditCmd.Flags().StringVar(&agentPrompt, "prompt", "", "novo prompt")
 	agentEditCmd.Flags().StringVar(&agentModel, "model", "", "novo modelo")
+	agentEditCmd.Flags().StringVar(&agentName, "name", "", "novo nome do agente")
 	agentEditCmd.Flags().StringVar(&agentTags, "tags", "", "novas tags separadas por vírgula")
 
 	agentRunCmd.Flags().DurationVar(&runTimeout, "timeout", 60*time.Second, "timeout por tentativa de execução")
@@ -810,9 +1028,15 @@ func init() {
 	agentRunCmd.Flags().StringVar(&runEditPaths, "edit-paths", "", "override de caminhos permitidos (csv)")
 	agentRunCmd.Flags().IntVar(&runEditMaxEdits, "edit-max", 8, "limite máximo de arquivos editados por execução")
 	agentRunCmd.Flags().BoolVar(&runEditYes, "yes", false, "aprova automaticamente todas as edições em mode=review")
+	agentRunCmd.Flags().BoolVar(&runRAGEnabled, "rag", false, "habilita recuperação semântica (RAG) nesta execução")
+	agentRunCmd.Flags().BoolVar(&runNoRAG, "no-rag", false, "desabilita recuperação semântica (RAG) nesta execução")
+	agentRunCmd.Flags().IntVar(&runRAGTopK, "rag-topk", 0, "override do top-k de memórias recuperadas")
+	agentRunCmd.Flags().Float64Var(&runRAGMinScore, "rag-min-score", 0, "override da similaridade mínima (0-1)")
 
 	configEditSetModeCmd.Flags().StringVar(&configEditMode, "mode", "", "modo de edição (off|review|auto)")
 	configEditSetPathsCmd.Flags().StringVar(&configEditPaths, "paths", "", "caminhos permitidos separados por vírgula")
+	configMemorySetReadPolicyCmd.Flags().StringVar(&configMemoryReadPolicy, "policy", "", "policy de leitura (self|shared)")
+	configMemorySetTTLCmd.Flags().IntVar(&configMemoryTTLHours, "hours", 0, "ttl em horas")
 }
 
 func splitTags(raw string) []string {

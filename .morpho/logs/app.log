@@ -1,0 +1,394 @@
+{"timestamp":"2026-04-20T20:02:22-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho help"}}
+{"timestamp":"2026-04-20T20:02:33-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho show logs"}}
+{"timestamp":"2026-04-20T20:09:16-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T20:09:22-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:09:24-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:09:24-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:09:26-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:09:26-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:09:30-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:09:31-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:09:37-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:09:37-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:11:30-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T20:11:34-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:11:35-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-1.5-pro"}}
+{"timestamp":"2026-04-20T20:11:35-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (404): models/gemini-1.5-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."}}
+{"timestamp":"2026-04-20T20:14:29-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T20:14:36-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T20:14:39-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:14:40-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:14:40-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:14:42-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:14:42-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:14:46-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:14:47-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:14:53-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:14:53-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:15:32-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho"}}
+{"timestamp":"2026-04-20T20:19:12-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:19:13-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:14-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:19:16-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:16-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:19:20-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:20-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:19:26-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:26-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:19:35-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:35-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:19:37-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:38-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:19:42-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:42-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:19:48-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:19:48-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:20:11-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T20:20:30-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho model list"}}
+{"timestamp":"2026-04-20T20:20:49-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho agent list"}}
+{"timestamp":"2026-04-20T20:21:02-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho agent list"}}
+{"timestamp":"2026-04-20T20:21:36-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho agent list"}}
+{"timestamp":"2026-04-20T20:22:07-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho agent create"}}
+{"timestamp":"2026-04-20T20:22:07-03:00","level":"DEBUG","message":"Salvando especificação do agente","fields":{"name":"teste"}}
+{"timestamp":"2026-04-20T20:22:16-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:29:44-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T20:29:48-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:32:57-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T20:33:01-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T20:33:06-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["chat","teste"]}}
+{"timestamp":"2026-04-20T20:33:06-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:34:11-03:00","level":"INFO","message":"Comando interativo finalizado com sucesso","fields":{"args":["chat","teste"]}}
+{"timestamp":"2026-04-20T20:34:20-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho"}}
+{"timestamp":"2026-04-20T20:34:25-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:34:27-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:34:27-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:34:27-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:34:27-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"teste","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:34:27-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T20:34:28-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"response_length":24}}
+{"timestamp":"2026-04-20T20:34:28-03:00","level":"INFO","message":"Agente finalizado com sucesso","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:34:28-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"teste","success":true}}
+{"timestamp":"2026-04-20T20:41:40-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho model list"}}
+{"timestamp":"2026-04-20T20:44:00-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:44:02-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:44:02-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:44:02-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:44:02-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:44:02-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:44:03-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:03-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:05-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:44:05-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:44:05-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:44:05-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:05-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:09-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:44:09-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:44:09-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:44:14-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T20:44:17-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:44:18-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:44:18-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:44:18-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:44:18-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:44:18-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:44:18-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:18-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:20-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:44:20-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:44:20-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:44:20-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:20-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:24-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:44:24-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:44:24-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:44:25-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:25-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:31-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":3,"delay":"6s"}}
+{"timestamp":"2026-04-20T20:44:31-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:44:31-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:44:31-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:31-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:31-03:00","level":"ERROR","message":"Limite de retries atingido","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:44:31-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"morpho","success":false}}
+{"timestamp":"2026-04-20T20:44:45-03:00","level":"DEBUG","message":"Worker da fila de IA iniciado"}
+{"timestamp":"2026-04-20T20:44:45-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T20:44:46-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","list"]}}
+{"timestamp":"2026-04-20T20:44:46-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho agent list"}}
+{"timestamp":"2026-04-20T20:44:46-03:00","level":"INFO","message":"Comando interativo finalizado com sucesso","fields":{"args":["agent","list"]}}
+{"timestamp":"2026-04-20T20:45:03-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T20:45:05-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:45:06-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:45:06-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:45:06-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:45:06-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:45:06-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:45:06-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:06-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:08-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:45:08-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:45:08-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:45:08-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:08-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:12-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:45:12-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:45:12-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:45:13-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:13-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:19-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":3,"delay":"6s"}}
+{"timestamp":"2026-04-20T20:45:19-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:45:19-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:45:19-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:19-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:19-03:00","level":"ERROR","message":"Limite de retries atingido","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:19-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"morpho","success":false}}
+{"timestamp":"2026-04-20T20:45:25-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","list"]}}
+{"timestamp":"2026-04-20T20:45:25-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho agent list"}}
+{"timestamp":"2026-04-20T20:45:25-03:00","level":"INFO","message":"Comando interativo finalizado com sucesso","fields":{"args":["agent","list"]}}
+{"timestamp":"2026-04-20T20:45:49-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T20:45:53-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:45:54-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:45:54-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:45:54-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T20:45:54-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:45:54-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:45:54-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:54-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:56-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:45:56-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:45:56-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:45:56-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:45:56-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:00-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:46:00-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:46:00-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:46:01-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:01-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:07-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"morpho","attempt":3,"delay":"6s"}}
+{"timestamp":"2026-04-20T20:46:07-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"morpho","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:46:07-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:46:07-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:07-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:07-03:00","level":"ERROR","message":"Limite de retries atingido","fields":{"agent":"morpho","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:07-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"morpho","success":false}}
+{"timestamp":"2026-04-20T20:46:11-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T20:46:15-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:46:17-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:17-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:17-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:17-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"teste","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T20:46:17-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T20:46:18-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"response_length":24}}
+{"timestamp":"2026-04-20T20:46:18-03:00","level":"INFO","message":"Agente finalizado com sucesso","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:18-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"teste","success":true}}
+{"timestamp":"2026-04-20T20:46:25-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:25-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:25-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:25-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"teste","task":"Usuário: oi\nAssistente: Olá! Como posso ajudar?\nUsuário: oq voce faz?\n"}}
+{"timestamp":"2026-04-20T20:46:25-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T20:46:28-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"response_length":187}}
+{"timestamp":"2026-04-20T20:46:28-03:00","level":"INFO","message":"Agente finalizado com sucesso","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T20:46:28-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"teste","success":true}}
+{"timestamp":"2026-04-20T20:46:36-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["backend-go"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:46:42-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"backend-go"}}
+{"timestamp":"2026-04-20T20:46:42-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"backend-go"}}
+{"timestamp":"2026-04-20T20:46:42-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"backend-go"}}
+{"timestamp":"2026-04-20T20:46:42-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"backend-go","task":"Usuário: no que vc é especialista\n"}}
+{"timestamp":"2026-04-20T20:46:42-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:46:43-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:43-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"backend-go","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:45-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"backend-go","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:46:45-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"backend-go","task":"Usuário: no que vc é especialista\n"}}
+{"timestamp":"2026-04-20T20:46:45-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:46:45-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:45-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"backend-go","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:49-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"backend-go","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:46:49-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"backend-go","task":"Usuário: no que vc é especialista\n"}}
+{"timestamp":"2026-04-20T20:46:49-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:46:49-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:49-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"backend-go","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:55-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"backend-go","attempt":3,"delay":"6s"}}
+{"timestamp":"2026-04-20T20:46:55-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"backend-go","task":"Usuário: no que vc é especialista\n"}}
+{"timestamp":"2026-04-20T20:46:55-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.0-flash"}}
+{"timestamp":"2026-04-20T20:46:55-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:55-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"backend-go","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:55-03:00","level":"ERROR","message":"Limite de retries atingido","fields":{"agent":"backend-go","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:46:55-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"backend-go","success":false}}
+{"timestamp":"2026-04-20T20:47:43-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","create","backend","--model","gemini-2.5-flash","--description","programador backend especialista","--prompt","voce é um principal engienier"]}}
+{"timestamp":"2026-04-20T20:47:43-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["backend"],"command":"morpho agent create"}}
+{"timestamp":"2026-04-20T20:47:43-03:00","level":"DEBUG","message":"Salvando especificação do agente","fields":{"name":"backend"}}
+{"timestamp":"2026-04-20T20:47:43-03:00","level":"INFO","message":"Comando interativo finalizado com sucesso","fields":{"args":["agent","create","backend","--model","gemini-2.5-flash","--description","programador backend especialista","--prompt","voce é um principal engienier"]}}
+{"timestamp":"2026-04-20T20:47:54-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["backend"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:48:00-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"backend"}}
+{"timestamp":"2026-04-20T20:48:00-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"backend"}}
+{"timestamp":"2026-04-20T20:48:00-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"backend"}}
+{"timestamp":"2026-04-20T20:48:00-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"backend","task":"Usuário: o que voce é\n"}}
+{"timestamp":"2026-04-20T20:48:00-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T20:48:00-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (503): This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."}}
+{"timestamp":"2026-04-20T20:48:00-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"backend","error":"erro Gemini (503): This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."}}
+{"timestamp":"2026-04-20T20:48:02-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"backend","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:48:02-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"backend","task":"Usuário: o que voce é\n"}}
+{"timestamp":"2026-04-20T20:48:02-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T20:48:04-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (503): This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."}}
+{"timestamp":"2026-04-20T20:48:04-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"backend","error":"erro Gemini (503): This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."}}
+{"timestamp":"2026-04-20T20:48:08-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"backend","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:48:08-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"backend","task":"Usuário: o que voce é\n"}}
+{"timestamp":"2026-04-20T20:48:08-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T20:48:11-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"response_length":604}}
+{"timestamp":"2026-04-20T20:48:11-03:00","level":"INFO","message":"Agente finalizado com sucesso","fields":{"agent":"backend"}}
+{"timestamp":"2026-04-20T20:48:11-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"backend","success":true}}
+{"timestamp":"2026-04-20T20:49:07-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T20:51:58-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","create","","--model","gemini-3.1-pro-preview","--description","especialista em arquitetura de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"]}}
+{"timestamp":"2026-04-20T20:51:58-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[""],"command":"morpho agent create"}}
+{"timestamp":"2026-04-20T20:51:58-03:00","level":"DEBUG","message":"Salvando especificação do agente","fields":{"name":""}}
+{"timestamp":"2026-04-20T20:51:58-03:00","level":"ERROR","message":"Validação de especificação falhou","fields":{"error":"nome do agente é obrigatório","name":""}}
+{"timestamp":"2026-04-20T20:51:58-03:00","level":"ERROR","message":"Execução encerrada com erro","fields":{"error":"nome do agente é obrigatório"}}
+{"timestamp":"2026-04-20T20:51:58-03:00","level":"ERROR","message":"Comando interativo falhou","fields":{"args":["agent","create","","--model","gemini-3.1-pro-preview","--description","especialista em arquitetura de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"],"error":"exit status 1"}}
+{"timestamp":"2026-04-20T20:52:29-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","create","","--model","gemini-3.1-pro-preview","--description","especialista em arquitetura de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"]}}
+{"timestamp":"2026-04-20T20:52:29-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[""],"command":"morpho agent create"}}
+{"timestamp":"2026-04-20T20:52:29-03:00","level":"DEBUG","message":"Salvando especificação do agente","fields":{"name":""}}
+{"timestamp":"2026-04-20T20:52:29-03:00","level":"ERROR","message":"Validação de especificação falhou","fields":{"error":"nome do agente é obrigatório","name":""}}
+{"timestamp":"2026-04-20T20:52:29-03:00","level":"ERROR","message":"Execução encerrada com erro","fields":{"error":"nome do agente é obrigatório"}}
+{"timestamp":"2026-04-20T20:52:29-03:00","level":"ERROR","message":"Comando interativo falhou","fields":{"args":["agent","create","","--model","gemini-3.1-pro-preview","--description","especialista em arquitetura de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"],"error":"exit status 1"}}
+{"timestamp":"2026-04-20T20:52:30-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","create","","--model","gemini-3.1-pro-preview","--description","especialista em arquitetura de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"]}}
+{"timestamp":"2026-04-20T20:52:30-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[""],"command":"morpho agent create"}}
+{"timestamp":"2026-04-20T20:52:30-03:00","level":"DEBUG","message":"Salvando especificação do agente","fields":{"name":""}}
+{"timestamp":"2026-04-20T20:52:30-03:00","level":"ERROR","message":"Validação de especificação falhou","fields":{"error":"nome do agente é obrigatório","name":""}}
+{"timestamp":"2026-04-20T20:52:30-03:00","level":"ERROR","message":"Execução encerrada com erro","fields":{"error":"nome do agente é obrigatório"}}
+{"timestamp":"2026-04-20T20:52:30-03:00","level":"ERROR","message":"Comando interativo falhou","fields":{"args":["agent","create","","--model","gemini-3.1-pro-preview","--description","especialista em arquitetura de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"],"error":"exit status 1"}}
+{"timestamp":"2026-04-20T20:53:09-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","create","arquiteto","--model","gemini-3.1-pro-preview","--description","entender bem de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"]}}
+{"timestamp":"2026-04-20T20:53:09-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["arquiteto"],"command":"morpho agent create"}}
+{"timestamp":"2026-04-20T20:53:09-03:00","level":"DEBUG","message":"Salvando especificação do agente","fields":{"name":"arquiteto"}}
+{"timestamp":"2026-04-20T20:53:09-03:00","level":"INFO","message":"Comando interativo finalizado com sucesso","fields":{"args":["agent","create","arquiteto","--model","gemini-3.1-pro-preview","--description","entender bem de código","--prompt","Voce é um especialista em arquitetura de software e principal engienier. Seu foco vai ser revisar código e identificar problemas de arquitetura, sugerir implementações, encontrar possiveis problemas de paralelismo, e responder de forma estruturada um problema e sua melhoria. quero que voce seja critico, mas entenda que todo o sistema é real e não busque 100% da perfeicao"]}}
+{"timestamp":"2026-04-20T20:53:16-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["arquiteto"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T20:53:26-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:53:26-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:53:26-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:53:26-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\n"}}
+{"timestamp":"2026-04-20T20:53:26-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:53:27-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:27-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:29-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:53:29-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\n"}}
+{"timestamp":"2026-04-20T20:53:29-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:53:29-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:29-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:33-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:53:33-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\n"}}
+{"timestamp":"2026-04-20T20:53:33-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:53:34-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:34-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:40-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":3,"delay":"6s"}}
+{"timestamp":"2026-04-20T20:53:40-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\n"}}
+{"timestamp":"2026-04-20T20:53:40-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:53:40-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:40-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:40-03:00","level":"ERROR","message":"Limite de retries atingido","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:53:40-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"arquiteto","success":false}}
+{"timestamp":"2026-04-20T20:55:14-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:55:14-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:55:14-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:55:14-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\n"}}
+{"timestamp":"2026-04-20T20:55:14-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:15-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:15-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:17-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:55:17-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\n"}}
+{"timestamp":"2026-04-20T20:55:17-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:18-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:18-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:22-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:55:22-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\n"}}
+{"timestamp":"2026-04-20T20:55:22-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:22-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:22-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:28-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":3,"delay":"6s"}}
+{"timestamp":"2026-04-20T20:55:28-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\n"}}
+{"timestamp":"2026-04-20T20:55:28-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:28-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:28-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:28-03:00","level":"ERROR","message":"Limite de retries atingido","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:28-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"arquiteto","success":false}}
+{"timestamp":"2026-04-20T20:55:31-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:55:31-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:55:31-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"arquiteto"}}
+{"timestamp":"2026-04-20T20:55:31-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário: oi\n"}}
+{"timestamp":"2026-04-20T20:55:31-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:31-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:31-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:33-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":1,"delay":"2s"}}
+{"timestamp":"2026-04-20T20:55:33-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário: oi\n"}}
+{"timestamp":"2026-04-20T20:55:33-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:33-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:33-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:37-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":2,"delay":"4s"}}
+{"timestamp":"2026-04-20T20:55:37-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário: oi\n"}}
+{"timestamp":"2026-04-20T20:55:37-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:38-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:38-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:44-03:00","level":"INFO","message":"Retentando tarefa","fields":{"agent":"arquiteto","attempt":3,"delay":"6s"}}
+{"timestamp":"2026-04-20T20:55:44-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"arquiteto","task":"Usuário: oq voce é e para que voce foi feito?\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário:  oi\nAssistente: ❌ Erro: falha ao executar agente 'arquiteto' após retries: erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos.\nUsuário: oi\n"}}
+{"timestamp":"2026-04-20T20:55:44-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-3.1-pro-preview"}}
+{"timestamp":"2026-04-20T20:55:44-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:44-03:00","level":"ERROR","message":"Erro na execução do agente","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:44-03:00","level":"ERROR","message":"Limite de retries atingido","fields":{"agent":"arquiteto","error":"erro Gemini (429): Cota de requisições excedida (Rate Limit). Tente novamente em alguns segundos."}}
+{"timestamp":"2026-04-20T20:55:44-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"arquiteto","success":false}}
+{"timestamp":"2026-04-20T20:55:57-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["agent","list"]}}
+{"timestamp":"2026-04-20T20:55:57-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho agent list"}}
+{"timestamp":"2026-04-20T20:55:57-03:00","level":"INFO","message":"Comando interativo finalizado com sucesso","fields":{"args":["agent","list"]}}
+{"timestamp":"2026-04-20T21:20:06-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho status"}}
+{"timestamp":"2026-04-20T21:20:18-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T21:20:19-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:19-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:19-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:19-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"teste","task":"Usuário: oi\n"}}
+{"timestamp":"2026-04-20T21:20:19-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T21:20:20-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"response_length":24}}
+{"timestamp":"2026-04-20T21:20:20-03:00","level":"INFO","message":"Agente finalizado com sucesso","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:20-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"teste","success":true}}
+{"timestamp":"2026-04-20T21:20:30-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":["teste"],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T21:20:42-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:42-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:42-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:42-03:00","level":"INFO","message":"Executando agente","fields":{"agent":"teste","task":"Usuário: crie um código de hello world para mim em python\n"}}
+{"timestamp":"2026-04-20T21:20:42-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash"}}
+{"timestamp":"2026-04-20T21:20:43-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"response_length":258}}
+{"timestamp":"2026-04-20T21:20:43-03:00","level":"INFO","message":"Agente finalizado com sucesso","fields":{"agent":"teste"}}
+{"timestamp":"2026-04-20T21:20:43-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"teste","success":true}}
+{"timestamp":"2026-04-20T21:23:42-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho worktree"}}
+{"timestamp":"2026-04-20T21:23:42-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T21:24:01-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho interactive"}}
+{"timestamp":"2026-04-20T21:24:21-03:00","level":"INFO","message":"Executando comando no modo interativo","fields":{"args":["presets","init"]}}
+{"timestamp":"2026-04-20T21:24:21-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho presets init"}}
+{"timestamp":"2026-04-20T21:24:21-03:00","level":"INFO","message":"Comando interativo finalizado com sucesso","fields":{"args":["presets","init"]}}
+{"timestamp":"2026-04-20T21:24:40-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho worktree"}}
+{"timestamp":"2026-04-20T21:25:40-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T21:25:58-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T21:28:55-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho worktree"}}
+{"timestamp":"2026-04-20T21:30:03-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho worktree"}}
+{"timestamp":"2026-04-20T21:30:40-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T21:31:00-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T21:31:02-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho worktree"}}
+{"timestamp":"2026-04-20T21:32:37-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T21:32:39-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:32:39-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:32:39-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:32:39-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash","tools_count":0}}
+{"timestamp":"2026-04-20T21:32:40-03:00","level":"ERROR","message":"Gemini API retornou erro","fields":{"error":"erro Gemini (404): models/gemini-2.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."}}
+{"timestamp":"2026-04-20T21:32:40-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"morpho","success":false}}
+{"timestamp":"2026-04-20T21:33:23-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho model list"}}
+{"timestamp":"2026-04-20T21:34:54-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}
+{"timestamp":"2026-04-20T21:35:06-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho chat"}}
+{"timestamp":"2026-04-20T21:35:10-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:35:10-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:35:10-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:35:10-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash","tools_count":0}}
+{"timestamp":"2026-04-20T21:35:13-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"functions_count":0,"has_text":true}}
+{"timestamp":"2026-04-20T21:35:13-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"morpho","success":true}}
+{"timestamp":"2026-04-20T21:35:54-03:00","level":"DEBUG","message":"Iniciando sendToAI no chat","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:35:54-03:00","level":"DEBUG","message":"Nova tarefa enfileirada","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:35:54-03:00","level":"INFO","message":"Worker processando tarefa","fields":{"agent":"morpho"}}
+{"timestamp":"2026-04-20T21:35:54-03:00","level":"DEBUG","message":"Iniciando chamada para Gemini API","fields":{"model":"gemini-2.5-flash","tools_count":0}}
+{"timestamp":"2026-04-20T21:35:58-03:00","level":"DEBUG","message":"Resposta recebida do Gemini","fields":{"functions_count":0,"has_text":true}}
+{"timestamp":"2026-04-20T21:35:58-03:00","level":"DEBUG","message":"Tarefa finalizada na fila","fields":{"agent":"morpho","success":true}}
+{"timestamp":"2026-04-20T21:42:59-03:00","level":"INFO","message":"Iniciando comando","fields":{"args":[],"command":"morpho install"}}

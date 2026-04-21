@@ -111,7 +111,7 @@ Para aplicar os presets com um modelo específico:
 ./bin/morpho agent create arquiteto-go \
   --description "Arquitetura backend" \
   --prompt "Você é um arquiteto Go. Seja objetivo." \
-  --model "gemini-2.0-flash" \
+  --model "gemini-2.5-flash" \
   --tags "go,backend,arquitetura"
 ```
 
@@ -124,7 +124,7 @@ Para aplicar os presets com um modelo específico:
 ### Trocar modelo do agente
 
 ```bash
-./bin/morpho agent set-model arquiteto-go gemini-2.0-flash
+./bin/morpho agent set-model arquiteto-go gemini-2.5-flash
 ```
 
 ---
@@ -181,6 +181,10 @@ Backups são salvos em `.morpho/backups/<timestamp>/` quando um arquivo existent
 - `--context-entries`: quantos outputs de outros agentes usar como contexto
 - `--context-chars`: limite de caracteres do contexto compartilhado
 - `--no-shared-context`: desativa contexto de outros agentes
+- `--rag`: ativa recuperação semântica (RAG) nesta execução
+- `--no-rag`: desativa RAG nesta execução
+- `--rag-topk`: override da quantidade de memórias recuperadas
+- `--rag-min-score`: override da similaridade mínima da recuperação
 
 Exemplo:
 
@@ -212,6 +216,28 @@ Cada execução salva um arquivo Markdown em:
 ```
 
 Esses outputs podem ser usados como contexto por outros agentes nas próximas execuções.
+
+### Memória semântica por agente
+
+Cada agente mantém uma base própria em:
+
+```text
+.morpho/memory/<agente>/knowledge.db
+```
+
+Comandos:
+
+```bash
+./bin/morpho agent memory status backend-go
+./bin/morpho agent memory search backend-go "erro 500 login"
+./bin/morpho agent memory reindex backend-go
+./bin/morpho agent memory prune backend-go --max-docs 200
+
+# hardening
+./bin/morpho config memory show
+./bin/morpho config memory set-read-policy self
+./bin/morpho config memory set-ttl-hours 720
+```
 
 ---
 

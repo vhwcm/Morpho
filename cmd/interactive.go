@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"os/exec"
@@ -10,11 +11,17 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/spf13/cobra"
+
+	"github.com/vhwcm/Morpho/internal/agentkit"
+	"github.com/vhwcm/Morpho/internal/config"
+	"github.com/vhwcm/Morpho/internal/gemini"
+	"github.com/vhwcm/Morpho/internal/logger"
 )
 
 type fieldSpec struct {
 	Label       string
 	Placeholder string
+	Options     func() []string
 }
 
 type menuItem struct {
@@ -30,6 +37,7 @@ type viewState int
 const (
 	stateMenu viewState = iota
 	stateForm
+	stateSelection
 	stateRunning
 	stateOutput
 )
@@ -50,6 +58,10 @@ type interactiveModel struct {
 	fieldValues map[string]string
 	input       textinput.Model
 
+	// Para seleção
+	selSelected int
+	selOptions  []string
+
 	lastArgs   []string
 	lastOutput string
 	lastError  error
@@ -64,6 +76,47 @@ var (
 	selectedButtonStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("230")).Background(lipgloss.Color("62")).Bold(true).Padding(0, 1)
 	buttonStyle         = lipgloss.NewStyle().Foreground(lipgloss.Color("252")).Padding(0, 1)
 )
+
+func listAgentsHelper() []string {
+	specs, _ := agentkit.ListSpecs()
+	res := make([]string, len(specs))
+	for i, s := range specs {
+		res[i] = s.Name
+	}
+	return res
+}
+
+func listModelsHelper() []string {
+	key := config.GetGeminiAPIKey()
+	// Fallback fixo se não tiver chave ou falhar
+	fallback := []string{"gemini-2.5-flash", "gemini-2.5-flash", "gemini-1.5-pro"}
+	
+	if key == "" {
+		return fallback
+	}
+	client, err := gemini.NewClient(key, "")
+	if err != nil {
+		return fallback
+	}
+	models, err := client.ListModels(context.Background())
+	if err != nil {
+		return fallback
+	}
+	res := make([]string, 0)
+	for _, m := range models {
+		if m.SupportsGenerateContent() {
+			name := m.Name
+			if strings.HasPrefix(name, "models/") {
+				name = name[len("models/"):]
+			}
+			res = append(res, name)
+		}
+	}
+	if len(res) == 0 {
+		return fallback
+	}
+	return res
+}
 
 var interactiveCmd = &cobra.Command{
 	Use:     "interactive",
@@ -102,14 +155,71 @@ func buildInteractiveItems() []menuItem {
 			},
 		},
 		{
+			Title:       "Chat com Morpho",
+			Description: "Conversa com o assistente central",
+			BuildArgs: func(_ map[string]string) []string {
+				return []string{"chat"}
+			},
+		},
+		{
+			Title:       "Chat com agente específico",
+			Description: "Inicia conversa fluida com um agente",
+			Fields: []fieldSpec{
+				{Label: "nome_agente", Placeholder: "selecione o agente", Options: listAgentsHelper},
+			},
+			BuildArgs: func(v map[string]string) []string {
+				return []string{"chat", strings.TrimSpace(v["nome_agente"])}
+			},
+		},
+		{
 			Title:       "Executar agente",
 			Description: "Roda um agente com uma tarefa",
 			Fields: []fieldSpec{
-				{Label: "nome_agente", Placeholder: "ex: backend-go"},
+				{Label: "nome_agente", Placeholder: "selecione o agente", Options: listAgentsHelper},
 				{Label: "tarefa", Placeholder: "ex: Criar plano para autenticação JWT"},
 			},
 			BuildArgs: func(v map[string]string) []string {
 				return []string{"agent", "run", strings.TrimSpace(v["nome_agente"]), strings.TrimSpace(v["tarefa"])}
+			},
+		},
+		{
+			Title:       "Editar agente",
+			Description: "Modifica especificações de um agente",
+			Fields: []fieldSpec{
+				{Label: "agente_atual", Placeholder: "selecione o agente", Options: listAgentsHelper},
+				{Label: "novo_nome", Placeholder: "deixe vazio para não alterar"},
+				{Label: "novo_modelo", Placeholder: "selecione o modelo", Options: listModelsHelper},
+				{Label: "nova_descrição", Placeholder: "deixe vazio para não alterar"},
+				{Label: "novo_prompt", Placeholder: "deixe vazio para não alterar"},
+			},
+			BuildArgs: func(v map[string]string) []string {
+				args := []string{"agent", "edit", v["agente_atual"]}
+				if v["novo_nome"] != "" {
+					args = append(args, "--name", v["novo_nome"])
+				}
+				if v["novo_modelo"] != "" {
+					args = append(args, "--model", v["novo_modelo"])
+				}
+				if v["nova_descrição"] != "" {
+					args = append(args, "--description", v["nova_descrição"])
+				}
+				if v["novo_prompt"] != "" {
+					args = append(args, "--prompt", v["novo_prompt"])
+				}
+				return args
+			},
+		},
+		{
+			Title:       "Criar novo agente",
+			Description: "Configura um novo especialista",
+			Fields: []fieldSpec{
+				{Label: "nome", Placeholder: "ex: arquiteto-cloud"},
+				{Label: "modelo", Placeholder: "selecione o modelo", Options: listModelsHelper},
+				{Label: "descricao", Placeholder: "para que serve este agente?"},
+				{Label: "prompt", Placeholder: "instruções de sistema da IA"},
+			},
+			BuildArgs: func(v map[string]string) []string {
+				return []string{"agent", "create", v["nome"], "--model", v["modelo"], "--description", v["descricao"], "--prompt", v["prompt"]}
 			},
 		},
 		{
@@ -123,7 +233,7 @@ func buildInteractiveItems() []menuItem {
 			Title:       "Visualizar output",
 			Description: "Exibe conteúdo de um output específico",
 			Fields: []fieldSpec{
-				{Label: "nome_agente", Placeholder: "ex: backend-go"},
+				{Label: "nome_agente", Placeholder: "selecione o agente", Options: listAgentsHelper},
 				{Label: "arquivo", Placeholder: "ex: 20260419-101500-task.md"},
 			},
 			BuildArgs: func(v map[string]string) []string {
@@ -162,6 +272,26 @@ func buildInteractiveItems() []menuItem {
 
 func (m interactiveModel) Init() tea.Cmd { return nil }
 
+func isInteractive(args []string) bool {
+	if len(args) == 0 {
+		return false
+	}
+	// chat e interactive são comandos que usam bubbletea e precisam de TTY real
+	cmd := args[0]
+	return cmd == "chat" || cmd == "interactive" || cmd == "i"
+}
+
+func (m interactiveModel) executeCommand(args []string) (tea.Model, tea.Cmd) {
+	if isInteractive(args) {
+		c := exec.Command(os.Args[0], args...)
+		return m, tea.ExecProcess(c, func(err error) tea.Msg {
+			return commandFinishedMsg{Output: "Comando interativo finalizado", Err: err, Args: args}
+		})
+	}
+	m.state = stateRunning
+	return m, runCommandCmd(args)
+}
+
 func (m interactiveModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
@@ -170,6 +300,8 @@ func (m interactiveModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m.updateMenuKeys(msg)
 		case stateForm:
 			return m.updateFormKeys(msg)
+		case stateSelection:
+			return m.updateSelectionKeys(msg)
 		case stateOutput:
 			return m.updateOutputKeys(msg)
 		case stateRunning:
@@ -217,21 +349,34 @@ func (m interactiveModel) updateMenuKeys(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 
 		if len(item.Fields) == 0 {
 			args := item.BuildArgs(nil)
-			m.state = stateRunning
-			return m, runCommandCmd(args)
+			return m.executeCommand(args)
 		}
 
 		m.activeItem = m.selected
 		m.fieldIndex = 0
 		m.fieldValues = map[string]string{}
-		m.input = textinput.New()
-		m.input.Placeholder = item.Fields[0].Placeholder
-		m.input.Prompt = item.Fields[0].Label + ": "
-		m.input.Focus()
-		m.state = stateForm
-		return m, nil
+		return m.startField(item.Fields[0])
 	}
 
+	return m, nil
+}
+
+func (m interactiveModel) startField(field fieldSpec) (tea.Model, tea.Cmd) {
+	if field.Options != nil {
+		opts := field.Options()
+		if len(opts) > 0 {
+			m.selOptions = opts
+			m.selSelected = 0
+			m.state = stateSelection
+			return m, nil
+		}
+	}
+
+	m.input = textinput.New()
+	m.input.Placeholder = field.Placeholder
+	m.input.Prompt = field.Label + ": "
+	m.input.Focus()
+	m.state = stateForm
 	return m, nil
 }
 
@@ -247,21 +392,47 @@ func (m interactiveModel) updateFormKeys(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 
 		if m.fieldIndex == len(item.Fields)-1 {
 			args := item.BuildArgs(m.fieldValues)
-			m.state = stateRunning
-			return m, runCommandCmd(args)
+			return m.executeCommand(args)
 		}
 
 		m.fieldIndex++
-		m.input.SetValue("")
-		m.input.Placeholder = item.Fields[m.fieldIndex].Placeholder
-		m.input.Prompt = item.Fields[m.fieldIndex].Label + ": "
-		m.input.Focus()
-		return m, nil
+		return m.startField(item.Fields[m.fieldIndex])
 	}
 
 	var cmd tea.Cmd
 	m.input, cmd = m.input.Update(msg)
 	return m, cmd
+}
+
+func (m interactiveModel) updateSelectionKeys(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	switch msg.String() {
+	case "esc":
+		m.state = stateMenu
+		return m, nil
+	case "up", "k":
+		if m.selSelected > 0 {
+			m.selSelected--
+		}
+		return m, nil
+	case "down", "j":
+		if m.selSelected < len(m.selOptions)-1 {
+			m.selSelected++
+		}
+		return m, nil
+	case "enter":
+		item := m.items[m.activeItem]
+		field := item.Fields[m.fieldIndex]
+		m.fieldValues[field.Label] = m.selOptions[m.selSelected]
+
+		if m.fieldIndex == len(item.Fields)-1 {
+			args := item.BuildArgs(m.fieldValues)
+			return m.executeCommand(args)
+		}
+
+		m.fieldIndex++
+		return m.startField(item.Fields[m.fieldIndex])
+	}
+	return m, nil
 }
 
 func (m interactiveModel) updateOutputKeys(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
@@ -273,8 +444,7 @@ func (m interactiveModel) updateOutputKeys(msg tea.KeyMsg) (tea.Model, tea.Cmd) 
 		return m, nil
 	case "r":
 		if len(m.lastArgs) > 0 {
-			m.state = stateRunning
-			return m, runCommandCmd(m.lastArgs)
+			return m.executeCommand(m.lastArgs)
 		}
 	}
 	return m, nil
@@ -288,12 +458,15 @@ func runCommandCmd(args []string) tea.Cmd {
 }
 
 func runSelf(args []string) (string, error) {
+	logger.Info("Executando comando no modo interativo", map[string]interface{}{"args": args})
 	cmd := exec.Command(os.Args[0], args...)
 	cmd.Env = os.Environ()
 	output, err := cmd.CombinedOutput()
 	if err != nil {
+		logger.Error("Comando interativo falhou", err, map[string]interface{}{"args": args})
 		return string(output), fmt.Errorf("comando falhou (%s): %w", strings.Join(args, " "), err)
 	}
+	logger.Info("Comando interativo finalizado com sucesso", map[string]interface{}{"args": args})
 	return string(output), nil
 }
 
@@ -303,6 +476,8 @@ func (m interactiveModel) View() string {
 		return m.renderMenuView()
 	case stateForm:
 		return m.renderFormView()
+	case stateSelection:
+		return m.renderSelectionView()
 	case stateRunning:
 		return boxStyle.Render("🦋 Executando comando...\n\nAguarde a conclusão.")
 	case stateOutput:
@@ -341,6 +516,29 @@ func (m interactiveModel) renderFormView() string {
 	hint := hintStyle.Render("Enter/Tab para próximo campo, Esc para cancelar")
 	body := fmt.Sprintf("Ação: %s\nCampo atual: %s\n\n%s", item.Title, field.Label, m.input.View())
 	return boxStyle.Render(title + "\n" + hint + "\n\n" + body)
+}
+
+func (m interactiveModel) renderSelectionView() string {
+	item := m.items[m.activeItem]
+	field := item.Fields[m.fieldIndex]
+	title := titleStyle.Render("🦋 Selecione uma opção")
+	hint := hintStyle.Render("Use ↑/↓ para navegar, Enter para confirmar, Esc para cancelar")
+	
+	var b strings.Builder
+	b.WriteString(fmt.Sprintf("Ação: %s\nCampo: %s\n\n", item.Title, field.Label))
+
+	for i, opt := range m.selOptions {
+		prefix := "  "
+		style := buttonStyle
+		if i == m.selSelected {
+			prefix = "▶ "
+			style = selectedButtonStyle
+		}
+		b.WriteString(style.Render(prefix + opt))
+		b.WriteString("\n")
+	}
+
+	return boxStyle.Render(title + "\n" + hint + "\n\n" + b.String())
 }
 
 func (m interactiveModel) renderOutputView() string {

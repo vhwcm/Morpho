@@ -6,12 +6,25 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/vhwcm/Morpho/internal/logger"
 )
 
 type FileConfig struct {
-	GeminiAPIKey string `json:"gemini_api_key"`
-	GeminiModel  string `json:"gemini_model"`
+	GeminiAPIKey string          `json:"gemini_api_key"`
+	GeminiModel  string          `json:"gemini_model"`
 	AgentEditing AgentEditConfig `json:"agent_editing"`
+	Memory       MemoryConfig    `json:"memory"`
+}
+
+type MemoryConfig struct {
+	Enabled        bool    `json:"enabled"`
+	TopK           int     `json:"top_k"`
+	MinScore       float64 `json:"min_score"`
+	MaxChars       int     `json:"max_chars"`
+	CrossAgentRead bool    `json:"cross_agent_read"`
+	ReadPolicy     string  `json:"read_policy"`
+	TTLHours       int     `json:"ttl_hours"`
 }
 
 func configDir() (string, error) {
@@ -49,11 +62,13 @@ func LoadFileConfig() (FileConfig, error) {
 		if os.IsNotExist(err) {
 			return FileConfig{}, nil
 		}
+		logger.Error("Erro ao ler arquivo de configuração", err, map[string]interface{}{"path": path})
 		return FileConfig{}, err
 	}
 
 	var cfg FileConfig
 	if err := json.Unmarshal(content, &cfg); err != nil {
+		logger.Error("Erro ao desserializar configuração", err)
 		return FileConfig{}, err
 	}
 	return cfg, nil
@@ -61,6 +76,7 @@ func LoadFileConfig() (FileConfig, error) {
 
 func SaveFileConfig(cfg FileConfig) error {
 	if err := ensureConfigDir(); err != nil {
+		logger.Error("Erro ao criar diretório de configuração", err)
 		return err
 	}
 
@@ -71,10 +87,15 @@ func SaveFileConfig(cfg FileConfig) error {
 
 	payload, err := json.MarshalIndent(cfg, "", "  ")
 	if err != nil {
+		logger.Error("Erro ao serializar configuração", err)
 		return err
 	}
 
-	return os.WriteFile(path, payload, 0o600)
+	err = os.WriteFile(path, payload, 0o600)
+	if err != nil {
+		logger.Error("Erro ao escrever arquivo de configuração", err, map[string]interface{}{"path": path})
+	}
+	return err
 }
 
 func SaveGeminiAPIKey(apiKey string) error {
